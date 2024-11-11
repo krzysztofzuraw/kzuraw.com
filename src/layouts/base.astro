@@ -1,0 +1,37 @@
+---
+import Link from "@/components/link.astro";
+import Meta from "@/components/meta.astro";
+
+const today = new Date();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <slot name="meta">
+      <Meta
+        title="Krzysztof Żuraw"
+        description="Blog about TypeScript, React and all things frontend"
+      />
+    </slot>
+  </head>
+  <body
+    class="mx-auto flex min-h-screen max-w-3xl flex-col gap-y-16 px-4 py-10 antialiased sm:px-6 sm:py-12 lg:max-w-4xl lg:px-8 lg:py-16 lg:text-xl xl:max-w-6xl dark:bg-gray-900 dark:text-white"
+  >
+    <header>
+      <h1 class="text-2xl font-semibold">kzuraw.com</h1>
+      <nav class="flex flex-row flex-wrap gap-3">
+        <Link href="/">Home</Link>
+        <Link href="/blog">Blog</Link>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="flex justify-between gap-4 border-t border-gray-300 pt-8">
+      <p>
+        &copy; 2024 - {today.getFullYear()} Krzysztof Żuraw.
+      </p>
+    </footer>
+  </body>
+</html>

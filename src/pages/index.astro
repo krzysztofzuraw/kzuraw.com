@@ -1,17 +1,17 @@
 ---
-import SpeedInsights from "@vercel/speed-insights/astro";
+import Base from "@/layouts/base.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-    <SpeedInsights />
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<Base>
+  <article class="grid gap-3">
+    <h1 class="text-4xl font-bold">Hi, I'm Krzysztof Żuraw</h1>
+    <h2 class="font-bold">
+      I am a self-taught frontend developer with over 5 years of experience.
+    </h2>
+    <p>
+      My expertise lies in building React and TypeScript websites and web-apps.
+      Currently, I work as a Staff Engineer at Saleor. In my free time, I enjoy
+      brewing specialty coffee using V60.
+    </p>
+  </article>
+</Base>
