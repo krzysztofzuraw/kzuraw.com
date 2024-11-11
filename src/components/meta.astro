@@ -3,12 +3,15 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
 export type Props = {
   title: string;
-  description: string;
+  description?: string;
 };
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description = "Website about TypeScript, React and all things frontend",
+} = Astro.props;
 ---
 
 <meta charset="utf-8" />

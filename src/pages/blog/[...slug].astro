@@ -1,0 +1,30 @@
+---
+import Meta from "@/components/meta.astro";
+import Base from "@/layouts/base.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+
+export const prerender = true;
+---
+
+<Base>
+  <Meta title={post.data.title ?? ""} description={post.data.description} />
+  <article class="prose lg:prose-xl dark:prose-invert">
+    <h1>{post.data.title}</h1>
+    <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
+      {post.data.pubDate?.toLocaleDateString("fr-CA")}
+    </time>
+    <Content />
+  </article>
+</Base>

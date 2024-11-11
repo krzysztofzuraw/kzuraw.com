@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+
+import Meta from "@/components/meta.astro";
+import Base from "@/layouts/base.astro";
+
+const blogPosts = await getCollection("blog");
+---
+
+<Base>
+  <Meta title="Blog" slot="meta" />
+  <article>
+    <h1 class="mb-4 text-5xl font-extrabold">Blog</h1>
+    <ul>
+      {
+        blogPosts.map((post) => (
+          <li>
+            <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
+              {post.data.pubDate?.toLocaleDateString("fr-CA")}
+            </time>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Base>
