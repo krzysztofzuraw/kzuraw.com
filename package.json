@@ -1,13 +1,15 @@
 {
-  "name": "kzuraw-com",
-  "version": "0.0.1",
+  "name": "website",
+  "version": "1.0.0",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@9.14.2",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
     "dev": "astro dev",
+    "lint": "astro check",
+    "prepare": "husky",
     "preview": "astro preview",
     "start": "astro dev"
   },
@@ -23,6 +25,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.10",
     "prettier": "3.3.3",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-pkg": "0.18.1",
