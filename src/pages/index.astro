@@ -1,19 +1,35 @@
 ---
+import { getCollection } from "astro:content";
+
+import Link from "@/components/link.astro";
 import Base from "@/layouts/base.astro";
+
+const blogPosts = await getCollection("blog").then((posts) =>
+  posts.slice(0, 3),
+);
 ---
 
 <Base>
   <article class="grid gap-3">
-    <h1 class="mb-4 text-5xl font-extrabold">Hi, I'm Krzysztof Żuraw</h1>
+    <h1 class="mb-2 text-3xl font-extrabold">Hi, I'm Krzysztof Żuraw</h1>
     <h2 class="font-bold">
       I am a self-taught fullstack developer with over 5 years of experience.
     </h2>
     <p>
       My expertise lies in building React and TypeScript websites and web-apps.
-      Currently, I work as a Staff Engineer at <a
-        href="https://saleor.io"
-        class="underline">Saleor</a
-      >. In my free time, I enjoy brewing specialty coffee using V60.
+      Currently, I work as a Staff Engineer at <Link href="https://saleor.io"
+        >Saleor.</Link
+      > In my free time, I enjoy brewing specialty coffee using V60.
     </p>
+    <p class="py-3 text-xl font-bold">My most recent posts</p>
+    <ul class="list-disc px-4">
+      {
+        blogPosts.map((post) => (
+          <li>
+            <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
+          </li>
+        ))
+      }
+    </ul>
   </article>
 </Base>

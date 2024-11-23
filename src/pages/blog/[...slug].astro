@@ -20,7 +20,9 @@ export const prerender = true;
 
 <Base>
   <Meta title={post.data.title ?? ""} description={post.data.description} />
-  <article class="prose lg:prose-xl dark:prose-invert">
+  <article
+    class="prose lg:prose-xl dark:prose-invert prose-a:text-blue-300 prose-a:no-underline"
+  >
     <h1>{post.data.title}</h1>
     <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
       {post.data.pubDate?.toLocaleDateString("fr-CA")}
