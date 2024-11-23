@@ -9,6 +9,7 @@
     "build": "astro check && astro build",
     "dev": "astro dev",
     "lint": "astro check",
+    "post:new": "./scripts/post.sh",
     "prepare": "husky",
     "preview": "astro preview",
     "start": "astro dev"
