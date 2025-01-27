@@ -11,12 +11,12 @@ const blogPosts = await getCollection("blog");
 <Base>
   <Meta title="Blog" slot="meta" />
   <article>
-    <h1 class="mb-4 text-3xl font-extrabold">Blog</h1>
+    <h1>Blog</h1>
     <ul>
       {
         blogPosts.map((post) => (
           <li>
-            <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
+            <time datetime={post.data.pubDate?.toISOString()}>
               {post.data.pubDate?.toLocaleDateString("fr-CA")}
             </time>
             <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>

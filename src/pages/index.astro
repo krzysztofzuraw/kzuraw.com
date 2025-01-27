@@ -10,9 +10,9 @@ const blogPosts = await getCollection("blog").then((posts) =>
 ---
 
 <Base>
-  <article class="grid gap-3">
-    <h1 class="mb-2 text-3xl font-extrabold">Hi, I'm Krzysztof Żuraw</h1>
-    <h2 class="font-bold">
+  <article>
+    <h1>Hi, I'm Krzysztof Żuraw</h1>
+    <h2>
       I am a self-taught fullstack developer with over 5 years of experience.
     </h2>
     <p>
@@ -21,8 +21,8 @@ const blogPosts = await getCollection("blog").then((posts) =>
         >Saleor.</Link
       > In my free time, I enjoy brewing specialty coffee using V60.
     </p>
-    <p class="py-3 text-xl font-bold">My most recent posts</p>
-    <ul class="list-disc px-4">
+    <p>My most recent posts</p>
+    <ul>
       {
         blogPosts.map((post) => (
           <li>
