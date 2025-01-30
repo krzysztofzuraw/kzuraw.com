@@ -3,6 +3,8 @@ import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
 
 const today = new Date();
+
+import "./global.css";
 ---
 
 <!doctype html>
@@ -18,21 +20,12 @@ const today = new Date();
       <nav>
         <Link href="/">Home</Link>
         <Link href="/blog">Blog</Link>
+        <Link href="/rss.xml">RSS</Link>
+        <Link href="https://github.com/krzysztofzuraw">GitHub</Link>
       </nav>
     </header>
     <main>
       <slot />
     </main>
-    <footer>
-      <p>
-        &copy; 2024 - {today.getFullYear()} Krzysztof Żuraw. All rights reserved.
-      </p>
-      <ul>
-        <Link href="/rss.xml">RSS</Link>
-        <Link>
-          <Link href="https://github.com/krzysztofzuraw">GitHub</Link>
-        </Link>
-      </ul>
-    </footer>
   </body>
 </html>

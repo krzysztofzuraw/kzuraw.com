@@ -10,14 +10,8 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
   "markdown.copyFiles.destination": {
     "/src/content/blog/**/*": "/src/assets/${fileName}"
   },
-  "prettier.documentSelectors": ["**/*.astro"],
-  "tailwindCSS.includeLanguages": {
-    "astro": "html"
-  }
+  "prettier.documentSelectors": ["**/*.astro"]
 }
