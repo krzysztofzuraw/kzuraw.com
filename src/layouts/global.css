@@ -1,3 +1,4 @@
+/* CSS from https://github.com/krzysztofzuraw/blog/tree/feb100d268c1bc65a8f709be029ee9f33c8dd64f/src/css */
 *,
 *::before,
 *::after {
@@ -60,4 +61,12 @@ nav {
 a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;
+}
+
+pre {
+  padding: 1rem;
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
 }
