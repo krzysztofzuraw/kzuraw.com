@@ -10,9 +10,9 @@ const blogPosts = await getCollection("blog").then((posts) =>
 ---
 
 <Layout>
-  <article class="prose lg:prose-lg max-w-none">
-    <h1>Hi, I'm Krzysztof Żuraw</h1>
-    <h2>
+  <article class="gap-2 grid">
+    <h1 class="font-bold text-3xl mb-4">Hi, I'm Krzysztof Żuraw</h1>
+    <h2 class="font-semibold text-xl mb-2">
       I am a self-taught fullstack developer with over 5 years of experience.
     </h2>
     <p>
@@ -21,10 +21,10 @@ const blogPosts = await getCollection("blog").then((posts) =>
       brewing specialty coffee using V60.
     </p>
     <p>My most recent posts</p>
-    <ul>
+    <ul class="list-disc list-inside">
       {
         blogPosts.map((post) => (
-          <li>
+          <li class="underline">
             <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
           </li>
         ))

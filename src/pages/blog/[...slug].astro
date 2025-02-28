@@ -20,7 +20,7 @@ const { Content } = await post.render();
   <Meta title={post.data.title} description={post.data.description} />
   <article class="prose lg:prose-lg">
     <h1>{post.data.title}</h1>
-    <time datetime={post.data.pubDate?.toISOString()}>
+    <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
       {post.data.pubDate?.toLocaleDateString("fr-CA")}
     </time>
     <Content />
