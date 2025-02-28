@@ -2,15 +2,15 @@
 import { getCollection } from "astro:content";
 
 import Link from "@/components/link.astro";
-import Base from "@/layouts/base.astro";
+import Layout from "@/layouts/layout.astro";
 
 const blogPosts = await getCollection("blog").then((posts) =>
   posts.slice(0, 3),
 );
 ---
 
-<Base>
-  <article>
+<Layout>
+  <article class="prose lg:prose-lg max-w-none">
     <h1>Hi, I'm Krzysztof Żuraw</h1>
     <h2>
       I am a self-taught fullstack developer with over 5 years of experience.
@@ -31,4 +31,4 @@ const blogPosts = await getCollection("blog").then((posts) =>
       }
     </ul>
   </article>
-</Base>
+</Layout>

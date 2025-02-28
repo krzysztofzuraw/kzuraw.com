@@ -2,9 +2,7 @@
 import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
 
-const today = new Date();
-
-import "./global.css";
+import "../styles/global.css";
 ---
 
 <!doctype html>
@@ -14,10 +12,11 @@ import "./global.css";
       <Meta title="Krzysztof Żuraw" />
     </slot>
   </head>
-  <body>
+  <body
+    class="mx-auto flex min-h-screen max-w-3xl flex-col gap-y-16 px-4 py-10 antialiased sm:px-6 sm:py-12 lg:max-w-4xl lg:px-8 lg:py-16 lg:text-xl xl:max-w-6xl"
+  >
     <header>
-      <h1>kzuraw.com</h1>
-      <nav>
+      <nav class="flex gap-x-2 border-b-1 border-gray-300 pb-2">
         <Link href="/">Home</Link>
         <Link href="/blog">Blog</Link>
         <Link href="/rss.xml">RSS</Link>

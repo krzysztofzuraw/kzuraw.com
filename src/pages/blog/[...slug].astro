@@ -1,6 +1,6 @@
 ---
 import Meta from "@/components/meta.astro";
-import Base from "@/layouts/base.astro";
+import Layout from "@/layouts/layout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -16,19 +16,13 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Base>
-  <Meta title={post.data.title ?? ""} description={post.data.description} />
-  <article class="flow">
+<Layout>
+  <Meta title={post.data.title} description={post.data.description} />
+  <article class="prose lg:prose-lg">
     <h1>{post.data.title}</h1>
     <time datetime={post.data.pubDate?.toISOString()}>
       {post.data.pubDate?.toLocaleDateString("fr-CA")}
     </time>
     <Content />
   </article>
-</Base>
-
-<style>
-  article > * + * {
-    margin-block-start: var(--flow-space, 1em);
-  }
-</style>
+</Layout>

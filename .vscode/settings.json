@@ -13,5 +13,8 @@
   "markdown.copyFiles.destination": {
     "/src/content/blog/**/*": "/src/assets/${fileName}"
   },
-  "prettier.documentSelectors": ["**/*.astro"]
+  "prettier.documentSelectors": ["**/*.astro"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }

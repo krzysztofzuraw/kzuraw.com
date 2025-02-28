@@ -3,12 +3,12 @@ import { getCollection } from "astro:content";
 
 import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
-import Base from "@/layouts/base.astro";
+import Layout from "@/layouts/layout.astro";
 
 const blogPosts = await getCollection("blog");
 ---
 
-<Base>
+<Layout>
   <Meta title="Blog" slot="meta" />
   <article>
     <h1>Blog</h1>
@@ -25,11 +25,4 @@ const blogPosts = await getCollection("blog");
       }
     </ul>
   </article>
-</Base>
-
-<style>
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-</style>
+</Layout>
