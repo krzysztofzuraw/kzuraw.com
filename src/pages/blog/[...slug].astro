@@ -10,14 +10,22 @@ export async function getStaticPaths() {
     props: post,
   }));
 }
+
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+// console.log("POST", post.data.title, post.data.description);
 ---
 
 <Layout>
-  <Meta title={post.data.title} description={post.data.description} />
+  <Meta
+    title={post.data.title}
+    description={post.data.description}
+    canonicalUrl={post.data.source?.url}
+    slot="meta"
+  />
   <article class="prose lg:prose-lg">
     <h1>{post.data.title}</h1>
     <time datetime={post.data.pubDate?.toISOString()} class="font-mono">

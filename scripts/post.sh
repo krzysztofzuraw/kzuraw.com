@@ -4,7 +4,7 @@ echo "---
 title: WIP	
 description:	
 pubDate: $(date -u +%Y-%m-%dT%H:%M:%SZ)	
-slug: 2024/wip	
+slug: 2025/wip	
 ---	
 " > src/content/blog/$(date +%F)-wip.md
 

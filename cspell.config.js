@@ -4,4 +4,5 @@
 export default {
   version: "0.2",
   language: "en",
+  words: ["saleor"],
 };
