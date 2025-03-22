@@ -20,7 +20,7 @@ const blogPosts = await getCollection("blog").then((posts) =>
       Currently, I work as a Staff Engineer at Saleor. In my free time, I enjoy
       brewing specialty coffee using V60.
     </p>
-    <p>My most recent posts</p>
+    <p class="mt-3">My most recent posts</p>
     <ul class="list-disc list-inside">
       {
         blogPosts.map((post) => (
