@@ -1,4 +1,6 @@
 ---
+import SpeedInsights from "@vercel/speed-insights/astro";
+
 export type Props = {
   title: string | undefined;
   description?: string;
@@ -28,3 +30,5 @@ const {
 />
 
 <title>{title}</title>
+
+<SpeedInsights />
