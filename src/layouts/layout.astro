@@ -3,6 +3,8 @@ import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
 
 import "../styles/global.css";
+
+const today = new Date();
 ---
 
 <!doctype html>
@@ -16,15 +18,23 @@ import "../styles/global.css";
     class="mx-auto flex min-h-screen max-w-3xl flex-col gap-y-16 px-4 py-10 antialiased sm:px-6 sm:py-12 lg:max-w-4xl lg:px-8 lg:py-16 lg:text-xl xl:max-w-6xl"
   >
     <header>
-      <nav class="flex gap-x-2 border-b-1 border-gray-300 pb-2">
-        <Link href="/">Home</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/rss.xml">RSS</Link>
-        <Link href="https://github.com/krzysztofzuraw">GitHub</Link>
+      <nav class="flex gap-x-2 justify-between border-b-1 border-gray-300 pb-2">
+        <div class="flex gap-x-3">
+          <Link href="/">Home</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/rss.xml">RSS</Link>
+        </div>
+
+        <div>
+          <Link href="https://github.com/krzysztofzuraw">GitHub</Link>
+        </div>
       </nav>
     </header>
     <main>
       <slot />
     </main>
+    <footer>
+      &copy; 2016 - {today.getFullYear()} Krzysztof Żuraw. All rights reserved.
+    </footer>
   </body>
 </html>

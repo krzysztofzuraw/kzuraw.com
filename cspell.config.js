@@ -3,6 +3,13 @@
  */
 export default {
   version: "0.2",
-  language: "en",
-  words: ["saleor"],
+  language: "en,pl",
+  dictionaries: ["blog"],
+  dictionaryDefinitions: [
+    {
+      name: "blog",
+      path: "./dictionary.txt",
+      addWords: true,
+    },
+  ],
 };
