@@ -3,8 +3,6 @@ import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
 
 import "../styles/global.css";
-
-const today = new Date();
 ---
 
 <!doctype html>
@@ -34,7 +32,7 @@ const today = new Date();
       <slot />
     </main>
     <footer>
-      &copy; 2016 - {today.getFullYear()} Krzysztof Żuraw. All rights reserved.
+      &copy; 2016 - {new Date().getFullYear()} Krzysztof Żuraw. All rights reserved.
     </footer>
   </body>
 </html>

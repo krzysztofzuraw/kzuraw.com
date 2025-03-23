@@ -15,8 +15,6 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
-
-// console.log("POST", post.data.title, post.data.description);
 ---
 
 <Layout>
@@ -28,9 +26,22 @@ const { Content } = await post.render();
   />
   <article class="prose lg:prose-lg">
     <h1>{post.data.title}</h1>
-    <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
-      {post.data.pubDate?.toLocaleDateString("fr-CA")}
-    </time>
+    <p class="flex gap-x-2">
+      <time datetime={post.data.pubDate?.toISOString()}>
+        {post.data.pubDate?.toLocaleDateString("fr-CA")}
+      </time>
+      <span>•</span>
+      {
+        post.data.source?.url && (
+          <span>
+            Originally published at{" "}
+            <a href={post.data.source.url}>
+              {new URL(post.data.source.url).host}
+            </a>
+          </span>
+        )
+      }
+    </p>
     <Content />
   </article>
 </Layout>
