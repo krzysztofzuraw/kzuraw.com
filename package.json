@@ -1,5 +1,6 @@
 {
-  "name": "website",
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "kzuraw.com",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -37,7 +38,11 @@
   "packageManager": "pnpm@10.6.5",
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@vercel/speed-insights"
-    ]
+      "@vercel/speed-insights",
+      "esbuild"
+    ],
+    "overrides": {
+      "path-to-regexp": "6.3.0"
+    }
   }
 }
