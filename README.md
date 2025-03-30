@@ -22,7 +22,7 @@ Run production build:
 pnpm build
 ```
 
-Generate an empty placeholder for the blog post
+Generate an empty blog post with required frontmatter
 
 ```shell
 pnpm post-create
