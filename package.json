@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
-    "@cspell/cspell-types": "8.17.5",
+    "@cspell/cspell-types": "8.18.1",
     "cspell": "8.17.5",
     "husky": "9.1.7",
     "lint-staged": "15.5.0",

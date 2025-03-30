@@ -37,8 +37,8 @@ importers:
         specifier: 0.9.4
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(typescript@5.8.2)
       '@cspell/cspell-types':
-        specifier: 8.17.5
-        version: 8.17.5
+        specifier: 8.18.1
+        version: 8.18.1
       cspell:
         specifier: 8.17.5
         version: 8.17.5
@@ -154,6 +154,10 @@ packages:
 
   '@cspell/cspell-types@8.17.5':
     resolution: {integrity: sha512-91y2+0teunRSRZj940ORDA3kdjyenrUiM+4j6nQQH24sAIAJdRmQl2LG3eUTmeaSReJGkZIpnToQ6DyU5cC88Q==}
+    engines: {node: '>=18'}
+
+  '@cspell/cspell-types@8.18.1':
+    resolution: {integrity: sha512-d/nMG+qnMbI/1JPm+lD0KcKpgtEHMRsHxkdtGyNCDgvHL/JOGaSHc5ERS3IUgBW0Dfya/3z9wPdaMcHEzt7YCQ==}
     engines: {node: '>=18'}
 
   '@cspell/dict-ada@4.1.0':
@@ -2975,6 +2979,8 @@ snapshots:
   '@cspell/cspell-service-bus@8.17.5': {}
 
   '@cspell/cspell-types@8.17.5': {}
+
+  '@cspell/cspell-types@8.18.1': {}
 
   '@cspell/dict-ada@4.1.0': {}
 
