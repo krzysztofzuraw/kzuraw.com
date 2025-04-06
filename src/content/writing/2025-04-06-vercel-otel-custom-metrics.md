@@ -1,19 +1,31 @@
 ---
 title: Custom metrics using @vercel/otel
-description:
+description: Learn how to properly implement custom metrics in Next.js applications using @vercel/otel and ensure they are correctly flushed in Route Handlers
 pubDate: 2025-04-06T10:07:53Z
-slug: slugify-wip
+slug: vercel-otel-custom-metrics
 ---
 
-Before I dive into how to setup custom metrics using [@vercel/otel](https://www.npmjs.com/package/@vercel/otel) I assume that you know what OTEL is and what OTEL metric is. It will be awesome if you know how `@vercel/otel` works and how to use in your Next.js app as well.
+This guide explains how to properly implement custom metrics in Next.js applications using [@vercel/otel](https://www.npmjs.com/package/@vercel/otel). Before proceeding, you should be familiar with:
+
+- [OpenTelemetry (OTEL)](https://opentelemetry.io) fundamentals
+- [OTEL metrics](https://opentelemetry.io/docs/specs/otel/metrics/)
+- Basic usage of `@vercel/otel` in Next.js applications
 
 ## Problem
 
-Vercel OTEL pkg is not automatically flushing custom metrics when your API route ended execution. It means that you will end up with incomplete data in your OTEL collector.
+When implementing custom metrics with `@vercel/otel` in Next.js [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers), you might notice that metrics aren't being properly reported to your OTEL collector. This happens because Route Handlers complete their execution before the metrics have a chance to be flushed to the collector.
 
 ## Solution
 
-To fix that you can create our own `MetricProvider` and flush it on the end of API route execution.
+To ensure all metrics are properly collected, we need to:
+
+1. Create a custom `MetricProvider`
+2. Register it with OTEL
+3. Manually flush metrics at the end of Route Handler execution
+
+Here's the step-by-step implementation:
+
+First, create a custom metric provider:
 
 ```ts
 // meter-provider.ts
@@ -30,13 +42,13 @@ export const meterProvider = new MeterProvider({
       exporter: new OTLPMetricExporter(),
     }),
   ],
-  // Create new resource as `@vercel/otel` creates its own under the hood and don't expose it
+  // Create new resource as `@vercel/otel` creates its own under the hood and doesn't expose it
   // https://github.com/vercel/otel/issues/153
   resource: new Resource(),
 });
 ```
 
-Instruct OTEL to use your newly created provider:
+Next, set up the OTEL instrumentation:
 
 ```ts
 // src/instrumentation.ts
@@ -49,7 +61,7 @@ export const register = () => {
 };
 ```
 
-Manually flush metric in your Route Handlers using after function
+Finally, implement the manual flush in your Route Handlers:
 
 ```ts
 // app/api/route.ts
@@ -67,3 +79,5 @@ export async function GET(request: Request) {
   });
 }
 ```
+
+With this setup, your custom metrics will be properly flushed and collected before the Route Handler completes its execution. This ensures no data loss and accurate metric reporting in your observability pipeline.
