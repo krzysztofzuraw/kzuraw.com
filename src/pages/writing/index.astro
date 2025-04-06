@@ -3,9 +3,12 @@ import { getCollection } from "astro:content";
 
 import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
+import { compareWritingsByDateDescending } from "@/helpers/compare-writings-by-date";
 import Layout from "@/layouts/layout.astro";
 
-const writing = await getCollection("writing");
+const writing = await getCollection("writing").then((posts) =>
+  posts.sort(compareWritingsByDateDescending),
+);
 ---
 
 <Layout>
