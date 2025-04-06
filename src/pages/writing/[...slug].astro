@@ -4,14 +4,14 @@ import Layout from "@/layouts/layout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("writing");
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
   }));
 }
 
-type Props = CollectionEntry<"blog">;
+type Props = CollectionEntry<"writing">;
 
 const post = Astro.props;
 const { Content } = await post.render();
@@ -30,15 +30,17 @@ const { Content } = await post.render();
       <time datetime={post.data.pubDate?.toISOString()}>
         {post.data.pubDate?.toLocaleDateString("fr-CA")}
       </time>
-      <span>•</span>
       {
         post.data.source?.url && (
-          <span>
-            Originally published at{" "}
-            <a href={post.data.source.url}>
-              {new URL(post.data.source.url).host}
-            </a>
-          </span>
+          <>
+            <span>•</span>
+            <span>
+              Originally published at{" "}
+              <a href={post.data.source.url}>
+                {new URL(post.data.source.url).host}
+              </a>
+            </span>
+          </>
         )
       }
     </p>

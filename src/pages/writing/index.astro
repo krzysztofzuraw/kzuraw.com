@@ -5,21 +5,21 @@ import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
 import Layout from "@/layouts/layout.astro";
 
-const blogPosts = await getCollection("blog");
+const writing = await getCollection("writing");
 ---
 
 <Layout>
-  <Meta title="Blog" slot="meta" />
+  <Meta title="Writing" slot="meta" />
   <article>
-    <h1 class="font-bold text-3xl mb-4">Blog</h1>
+    <h1 class="font-bold text-3xl mb-4">Writing</h1>
     <ul>
       {
-        blogPosts.map((post) => (
+        writing.map((post) => (
           <li>
             <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
               {post.data.pubDate?.toLocaleDateString("fr-CA")}
             </time>
-            <Link href={`/blog/${post.slug}`} class="underline">
+            <Link href={`/writing/${post.slug}`} class="underline">
               {post.data.title}
             </Link>
           </li>

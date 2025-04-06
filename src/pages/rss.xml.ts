@@ -3,7 +3,7 @@ import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 
 export const GET: APIRoute = async (context) => {
-  const blog = await getCollection("blog");
+  const blog = await getCollection("writing");
 
   return rss({
     title: "kzuraw.com",
