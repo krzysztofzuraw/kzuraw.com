@@ -6,8 +6,8 @@ description:
 pubDate: $(date -u +%Y-%m-%dT%H:%M:%SZ)	
 slug: slugify-wip	
 ---	
-" > src/content/blog/$(date +%F)-wip.md
+" > src/content/writing/$(date +%F)-wip.md
 
-code src/content/blog/$(date +%F)-wip.md
+code src/content/writing/$(date +%F)-wip.md
 
-echo 'Blog post created'
+echo 'Writing post created'
