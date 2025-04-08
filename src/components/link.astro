@@ -11,7 +11,7 @@ const normalizedHref = (href as string).replace(/\/$/, "") || "/";
 const isActive =
   // Exact match (with or without trailing slash)
   normalizedHref === normalizedCurrentPath ||
-  // Active for sub-paths (e.g. /blog is active for /blog/post-1)
+  // Active for sub-paths (e.g. /writing is active for /writing/post-1)
   (normalizedHref !== "/" && pathname.startsWith(normalizedHref));
 ---
 

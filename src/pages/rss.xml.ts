@@ -14,7 +14,7 @@ export const GET: APIRoute = async (context) => {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/blog/${post.slug}/`,
+      link: `/writing/${post.slug}/`,
     })),
     customData: `<language>en-us</language>`,
     stylesheet: "/rss/styles.xsl",

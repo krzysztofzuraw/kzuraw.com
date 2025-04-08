@@ -11,7 +11,7 @@
     "strings": true
   },
   "markdown.copyFiles.destination": {
-    "/src/content/blog/**/*": "/src/assets/${fileName}"
+    "/src/content/writing/**/*": "/src/assets/${fileName}"
   },
   "prettier.documentSelectors": ["**/*.astro"],
   "files.associations": {
