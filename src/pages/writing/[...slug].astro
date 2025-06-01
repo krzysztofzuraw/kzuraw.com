@@ -32,13 +32,7 @@ const { Content } = await post.render();
       <h1>
         {post.data.title}
       </h1>
-    </div>
-  </Fragment>
-  <Fragment slot="content">
-    <article
-      class="prose prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-a:no-underline"
-    >
-      <p class="flex gap-x-2">
+      <div class="flex gap-x-2">
         <time datetime={post.data.pubDate?.toISOString()}>
           {
             post.data.pubDate?.toLocaleDateString("en-US", {
@@ -61,7 +55,13 @@ const { Content } = await post.render();
             </>
           )
         }
-      </p>
+      </div>
+    </div>
+  </Fragment>
+  <Fragment slot="content">
+    <article
+      class="prose prose-a:text-blue-600 prose-a:hover:text-blue-700 prose-a:no-underline"
+    >
       <Content />
     </article>
   </Fragment>

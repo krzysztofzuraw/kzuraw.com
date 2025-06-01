@@ -1,16 +1,12 @@
 ---
 import { ArrowLeft } from "@lucide/astro";
 import Link from "./link.astro";
-
-const { class: className } = Astro.props;
 ---
 
 <Link
   href="/"
-  class:list={[
-    "inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors mb-8",
-    className,
-  ]}
-  ><ArrowLeft class="w-4 h-4 mr-2" />
+  class="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors mb-8"
+>
+  <ArrowLeft class="w-4 h-4 mr-2" />
   Back to home
 </Link>
