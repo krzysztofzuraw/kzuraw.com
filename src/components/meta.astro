@@ -1,5 +1,6 @@
 ---
 import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
 
 export type Props = {
   title: string | undefined;
@@ -33,3 +34,5 @@ const {
 <title>{title}</title>
 
 <SpeedInsights />
+
+<ClientRouter />

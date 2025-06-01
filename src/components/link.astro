@@ -2,19 +2,8 @@
 export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
 
 const { href, class: className, ...props } = Astro.props;
-const { pathname } = Astro.url;
-
-// Remove trailing slash for comparison
-const normalizedCurrentPath = pathname.replace(/\/$/, "") || "/";
-const normalizedHref = (href as string).replace(/\/$/, "") || "/";
-
-const isActive =
-  // Exact match (with or without trailing slash)
-  normalizedHref === normalizedCurrentPath ||
-  // Active for sub-paths (e.g. /writing is active for /writing/post-1)
-  (normalizedHref !== "/" && pathname.startsWith(normalizedHref));
 ---
 
-<a href={href} class:list={[className, { underline: isActive }]} {...props}>
+<a href={href} class:list={[className]} {...props}>
   <slot />
 </a>

@@ -1,19 +1,16 @@
-import { compareWritingsByDateDescending } from "@/helpers/compare-writings-by-date";
+import { getLatestWritings } from "@/helpers/get-latest-writing";
 import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
 
 export const GET: APIRoute = async (context) => {
-  const writing = await getCollection("writing").then((posts) =>
-    posts.sort(compareWritingsByDateDescending),
-  );
+  const latestWriting = await getLatestWritings();
 
   return rss({
     title: "kzuraw.com",
     description: "Website about TypeScript, React and all things frontend",
     site: context.site?.toString() ?? "https://kzuraw.com",
     trailingSlash: false,
-    items: writing.map((post) => ({
+    items: latestWriting.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,

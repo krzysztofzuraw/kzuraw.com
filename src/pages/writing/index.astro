@@ -1,33 +1,56 @@
 ---
-import { getCollection } from "astro:content";
-
+import BackHome from "@/components/back-home.astro";
 import Link from "@/components/link.astro";
 import Meta from "@/components/meta.astro";
-import { compareWritingsByDateDescending } from "@/helpers/compare-writings-by-date";
+import { getWritingsByYear } from "@/helpers/get-writings-by-year";
 import Layout from "@/layouts/layout.astro";
 
-const writing = await getCollection("writing").then((posts) =>
-  posts.sort(compareWritingsByDateDescending),
-);
+const writingsByYear = await getWritingsByYear();
 ---
 
 <Layout>
   <Meta title="Writing" slot="meta" />
-  <article>
-    <h1 class="font-bold text-3xl mb-4">Writing</h1>
-    <ul>
+  <Fragment slot="header">
+    <BackHome />
+
+    <div>
+      <h1 class="text-2xl font-semibold text-gray-900 mb-4">
+        Writing Archives
+      </h1>
+      <p class="text-gray-700">All articles organized by date.</p>
+    </div>
+  </Fragment>
+  <Fragment slot="content">
+    <div class="space-y-12">
       {
-        writing.map((post) => (
-          <li>
-            <time datetime={post.data.pubDate?.toISOString()} class="font-mono">
-              {post.data.pubDate?.toLocaleDateString("fr-CA")}
-            </time>
-            <Link href={`/writing/${post.slug}`} class="underline">
-              {post.data.title}
-            </Link>
-          </li>
+        writingsByYear.map(([year, posts]) => (
+          <section>
+            <h2 class="text-lg font-medium text-gray-900 mb-6">{year}</h2>
+            <ul class="space-y-5">
+              {posts.map((post) => (
+                <li class="group">
+                  <Link href={`/writing/${post.slug}`} class="block">
+                    <div class="flex justify-between items-baseline">
+                      <h3 class="text-blue-600 group-hover:text-blue-700 transition-colors">
+                        {post.data.title}
+                      </h3>
+                      {post.data.pubDate && (
+                        <time class="text-sm text-gray-500 shrink-0 ml-4">
+                          {new Date(post.data.pubDate).toLocaleDateString(
+                            "en-US",
+                            { month: "short", day: "numeric" },
+                          )}
+                        </time>
+                      )}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
         ))
       }
-    </ul>
-  </article>
+    </div>
+  </Fragment>
+  <Fragment slot="footer"></Fragment>
 </Layout>

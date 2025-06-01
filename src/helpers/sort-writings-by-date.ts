@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 
-export const compareWritingsByDateDescending = (
+export const sortWritingsByDate = (
   firstEntry: CollectionEntry<"writing">,
   secondEntry: CollectionEntry<"writing">,
 ) => {

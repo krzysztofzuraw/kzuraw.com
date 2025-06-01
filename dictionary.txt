@@ -1,4 +1,7 @@
+fontsource
 frontmatter
 krzysztofzuraw
 kzuraw
+lucide
 saleor
+vercel

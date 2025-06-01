@@ -1,37 +1,71 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-
 import Link from "@/components/link.astro";
-import { compareWritingsByDateDescending } from "@/helpers/compare-writings-by-date";
+import { getLatestWritings } from "@/helpers/get-latest-writing";
 import Layout from "@/layouts/layout.astro";
 
-const latestWriting = await getCollection("writing").then(
-  (posts: CollectionEntry<"writing">[]) =>
-    posts.sort(compareWritingsByDateDescending).slice(0, 3),
-);
+const latestWriting = await getLatestWritings();
 ---
 
 <Layout>
-  <article class="gap-2 grid">
-    <h1 class="font-bold text-3xl mb-4">Hi, I'm Krzysztof Żuraw</h1>
-    <h2 class="font-semibold text-xl mb-2">
-      I am a self-taught fullstack developer with over 5 years of experience.
-    </h2>
-    <p>
-      My expertise lies in building React and TypeScript websites and web-apps.
-      Currently, I work as a Staff Engineer at Saleor. In my free time, I enjoy
-      brewing specialty coffee using V60.
+  <Fragment slot="header">
+    <div
+      class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6"
+    >
+      <h1 class="text-2xl font-semibold text-gray-900 mb-2 sm:mb-0">
+        Krzysztof Żuraw
+      </h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <Link
+            href="/writing"
+            class="text-gray-600 hover:text-gray-900 transition-colors"
+            >Writing</Link
+          >
+          <Link
+            href="/rss.xml"
+            class="text-gray-600 hover:text-gray-900 transition-colors"
+            >RSS</Link
+          >
+        </ul>
+      </nav>
+    </div>
+    <p class="text-gray-700 leading-relaxed">
+      I'm a fullstack developer. I work at{" "}
+      <Link href="https://saleor.io/" class="text-blue-600 hover:text-blue-700"
+        >Saleor</Link
+      >where I build an open-source e-commerce platform.
     </p>
-    <p class="mt-3">My most recent posts</p>
-    <ul class="list-disc list-inside">
-      {
-        latestWriting.map((post) => (
-          <li class="underline">
-            <Link href={`/writing/${post.slug}`}>{post.data.title}</Link>
-          </li>
-        ))
-      }
-    </ul>
-  </article>
+  </Fragment>
+  <Fragment slot="content">
+    <section class="mb-12">
+      <h2 class="text-lg font-medium text-gray-900 mb-6">Latest writing</h2>
+      <ul class="space-y-3">
+        {
+          latestWriting.map((post) => (
+            <li>
+              <Link
+                href={`/writing/${post.slug}`}
+                class="text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                {post.data.title}
+              </Link>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </Fragment>
+  <Fragment slot="footer">
+    <div class="flex space-x-6 justify-between text-sm text-gray-500">
+      &copy; Krzysztof Żuraw
+      <ul class="flex gap-2">
+        <li>
+          <Link href="https://github.com/krzysztofzuraw">GitHub</Link>
+        </li>
+        <li>
+          <Link href="https://www.linkedin.com/in/kzuraw">LinkedIn</Link>
+        </li>
+      </ul>
+    </div>
+  </Fragment>
 </Layout>
