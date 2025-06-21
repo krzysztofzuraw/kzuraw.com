@@ -23,6 +23,7 @@
     "@tailwindcss/vite": "4.1.8",
     "@vercel/speed-insights": "1.2.0",
     "astro": "5.8.1",
+    "sharp": "0.34.2",
     "tailwindcss": "4.1.8"
   },
   "devDependencies": {
@@ -41,7 +42,8 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@vercel/speed-insights",
-      "esbuild"
+      "esbuild",
+      "sharp"
     ],
     "overrides": {
       "path-to-regexp": "6.3.0"
