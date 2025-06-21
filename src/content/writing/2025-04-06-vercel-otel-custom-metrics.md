@@ -2,7 +2,7 @@
 title: Custom metrics using @vercel/otel
 description: Learn how to properly implement custom metrics in Next.js applications using @vercel/otel and ensure they are correctly flushed in Route Handlers
 pubDate: 2025-04-06T10:07:53Z
-slug: vercel-otel-custom-metrics
+slug: 2025/vercel-otel-custom-metrics
 ---
 
 This guide explains how to properly implement custom metrics in Next.js applications using [@vercel/otel](https://www.npmjs.com/package/@vercel/otel). Before proceeding, you should be familiar with:

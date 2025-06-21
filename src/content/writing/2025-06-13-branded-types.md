@@ -2,7 +2,7 @@
 title: "Branded Types in TypeScript: techniques"
 description: Guide to branded types in TypeScript, covering techniques to enhance type safety and prevent subtle bugs.
 pubDate: 2025-06-13T13:25:37Z
-slug: branded-types-typescript-techniques
+slug: 2025/branded-types-typescript-techniques
 source:
   url: https://dev.to/saleor/branded-types-in-typescript-techniques-340f
   title: "Branded Types in TypeScript: techniques"

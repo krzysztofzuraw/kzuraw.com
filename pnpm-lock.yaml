@@ -45,6 +45,9 @@ importers:
       '@cspell/cspell-types':
         specifier: 9.0.2
         version: 9.0.2
+      '@cspell/dict-pl_pl':
+        specifier: 3.0.4
+        version: 3.0.4
       cspell:
         specifier: 9.0.2
         version: 9.0.2
@@ -302,6 +305,9 @@ packages:
 
   '@cspell/dict-php@4.0.14':
     resolution: {integrity: sha512-7zur8pyncYZglxNmqsRycOZ6inpDoVd4yFfz1pQRe5xaRWMiK3Km4n0/X/1YMWhh3e3Sl/fQg5Axb2hlN68t1g==}
+
+  '@cspell/dict-pl_pl@3.0.4':
+    resolution: {integrity: sha512-UOTxidWyGlTDMtzRyxmkJra6nc+4psu5vy5rVD7SOR5gHbbQhrk1LWvMHqamrhHQxapKWCiRv/v96Bz0kdTafA==}
 
   '@cspell/dict-powershell@5.0.14':
     resolution: {integrity: sha512-ktjjvtkIUIYmj/SoGBYbr3/+CsRGNXGpvVANrY0wlm/IoGlGywhoTUDYN0IsGwI2b8Vktx3DZmQkfb3Wo38jBA==}
@@ -3298,6 +3304,8 @@ snapshots:
   '@cspell/dict-npm@5.2.4': {}
 
   '@cspell/dict-php@4.0.14': {}
+
+  '@cspell/dict-pl_pl@3.0.4': {}
 
   '@cspell/dict-powershell@5.0.14': {}
 

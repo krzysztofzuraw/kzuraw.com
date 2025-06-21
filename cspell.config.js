@@ -4,7 +4,7 @@
 export default {
   version: "0.2",
   language: "en,pl",
-  dictionaries: ["blog"],
+  dictionaries: ["pl_PL", "blog"],
   dictionaryDefinitions: [
     {
       name: "blog",
