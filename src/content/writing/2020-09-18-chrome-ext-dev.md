@@ -4,16 +4,13 @@ pubDate: 2020-09-18
 slug: 2020/setting-up-webpack-for-chrome-extension-development
 ---
 
-Today I learned how to setup [webpack](https://webpack.js.org/) for chrome extension development.
-In this post I will show you how I did it. To start, you need to install webpack and packages
-from webpack ecosystem:
+Today I learned how to setup [webpack](https://webpack.js.org/) for chrome extension development. In this post I will show you how I did it. To start, you need to install webpack and packages from webpack ecosystem:
 
 ```shell
 npm install --save-dev webpack webpack-cli html-webpack-plugin clean-webpack-plugin copy-webpack-plugin
 ```
 
-First step done - now it is getting tricky. How to lay out development & production config to avoid
-nested ternary operators as you don’t want to spend 3 days setting up everything?
+First step done - now it is getting tricky. How to lay out development & production config to avoid nested ternary operators as you don’t want to spend 3 days setting up everything?
 
 Create `webpack.common.js`. Here you gonna put common settings that will be used by both development & production config:
 
@@ -96,5 +93,4 @@ All you need to do after running `npm start` is to tell chrome that there is unp
 
 ## Summary
 
-In today's blog post I described setting up webpack for browser's extension development.
-You can check a working example in my latest side project - [rabat](https://github.com/krzysztofzuraw/rabat).
+In today's blog post I described setting up webpack for browser's extension development. You can check a working example in my latest side project - [rabat](https://github.com/krzysztofzuraw/rabat).

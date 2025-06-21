@@ -4,30 +4,23 @@ pubDate: 2020-08-21
 slug: 2020/rxjs-and-auth-token-expiration-timers
 ---
 
-Recently in my work, I stumbled upon an interesting problem to solve. I needed to inform users that they have
-a valid token only for the next 10 minutes and after that 10 minutes logout them.
-You can see the user flow with more details on the illustration below.
+Recently in my work, I stumbled upon an interesting problem to solve. I needed to inform users that they have a valid token only for the next 10 minutes and after that 10 minutes logout them. You can see the user flow with more details on the illustration below.
 
 ![Expiration token flow](../../assets/2020-08-21-token-flow.jpg)
 
-For this use case, I decided to use a [redux-observable](https://redux-observable.js.org/) - in this blog
-post, I will write how I did it. I assume that you are familiar with the [RxJS](https://rxjs-dev.firebaseapp.com/).
+For this use case, I decided to use a [redux-observable](https://redux-observable.js.org/) - in this blog post, I will write how I did it. I assume that you are familiar with the [RxJS](https://rxjs-dev.firebaseapp.com/).
 
-Why the RxJS and not other redux middleware was used for async actions? To be honest it was my personal preference
-and this library includes helper functions that are perfect for this use case.
+Why the RxJS and not other redux middleware was used for async actions? To be honest it was my personal preference and this library includes helper functions that are perfect for this use case.
 
 Going back to the topic - let's start with the first event - user logs in.
 
 ## User logs in
 
-I used [Auth0 lock](https://auth0.com/docs/libraries/lock) as an entry point to my application.
-When the user enters login & password then is redirected back with [JWT token](https://jwt.io/).
+I used [Auth0 lock](https://auth0.com/docs/libraries/lock) as an entry point to my application. When the user enters login & password then is redirected back with [JWT token](https://jwt.io/).
 
 ## Read expiration time from token
 
-JWT token has handy information about its expiration time.
-I have used [jwt-decode](https://www.npmjs.com/package/jwt-decode) to decode a token and to extract expiration
-time. If you are using TypeScript you need to type what is inside the token:
+JWT token has handy information about its expiration time. I have used [jwt-decode](https://www.npmjs.com/package/jwt-decode) to decode a token and to extract expiration time. If you are using TypeScript you need to type what is inside the token:
 
 ```tsx
 import jwtDecode from "jwt-decode";
@@ -35,9 +28,7 @@ import jwtDecode from "jwt-decode";
 const decodedToken = jwtDecode(authToken);
 ```
 
-When it comes to date manipulation I have used [date-fns](https://date-fns.org/).
-Firstly, I converted `exp` which is a UNIX timestamp to date and then
-[sub](https://date-fns.org/v2.15.0/docs/sub) function help me to get date 10 minutes before `expirationDate`.
+When it comes to date manipulation I have used [date-fns](https://date-fns.org/). Firstly, I converted `exp` which is a UNIX timestamp to date and then [sub](https://date-fns.org/v2.15.0/docs/sub) function help me to get date 10 minutes before `expirationDate`.
 
 ```tsx
 import { fromUnixTime, sub } from "date-fns";
@@ -69,13 +60,9 @@ const setLogoutNotificationEpic = (action$, state$) =>
   );
 ```
 
-RxJS has a handy helper for delaying action emission (in my case `showLogoutNotification`) called
-[delay](https://www.learnrxjs.io/learn-rxjs/operators/utility/delay). What is neat about it? It can
-take both the number of milliseconds and the date to delay stream of actions.
-It has one bug though but more about it later.
+RxJS has a handy helper for delaying action emission (in my case `showLogoutNotification`) called [delay](https://www.learnrxjs.io/learn-rxjs/operators/utility/delay). What is neat about it? It can take both the number of milliseconds and the date to delay stream of actions. It has one bug though but more about it later.
 
-I had the first epic in place so I can create the second one. This epic main task is
-to logout user (dispatch action to logout user to be precise) on the expiration date.
+I had the first epic in place so I can create the second one. This epic main task is to logout user (dispatch action to logout user to be precise) on the expiration date.
 
 ```tsx
 const setLogoutEpic = (action$, state$) =>
@@ -93,15 +80,11 @@ const setLogoutEpic = (action$, state$) =>
 
 As you can see only actions and data passed to `delay` is different from the previous example.
 
-You may ask why do I need to have those delays inside two different epics. It is because of the
-[bug](https://github.com/ReactiveX/rxjs/issues/5232) in RxJS. Long story short - when you have two
-delays inside the same epic they will not work. I took this opportunity and I made my code more
-readable (at least I think I did).
+You may ask why do I need to have those delays inside two different epics. It is because of the [bug](https://github.com/ReactiveX/rxjs/issues/5232) in RxJS. Long story short - when you have two delays inside the same epic they will not work. I took this opportunity and I made my code more readable (at least I think I did).
 
 ## Summary
 
-I wrote a blog post on how to use the RxJS [delay](https://www.learnrxjs.io/learn-rxjs/operators/utility/delay)
-operator to dispatch two actions:
+I wrote a blog post on how to use the RxJS [delay](https://www.learnrxjs.io/learn-rxjs/operators/utility/delay) operator to dispatch two actions:
 
 - 10 minutes before JWT token expires,
 - when JWT token expires.

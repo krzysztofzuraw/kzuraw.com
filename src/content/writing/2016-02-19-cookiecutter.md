@@ -4,32 +4,17 @@ pubDate: 2016-02-19
 slug: 2016/django-cookiecutter
 ---
 
-**Have you ever wanted to automate all these boring things that you have
-to do while setting up new django project? Like writing proper settings,
-setting up whole folder structure, adding docs, readmes, setup.py etc?
-There is app that can do these mundane actions for you:** [Cookiecutter
-Django](https://github.com/pydanny/cookiecutter-django).
+**Have you ever wanted to automate all these boring things that you have to do while setting up new django project? Like writing proper settings, setting up whole folder structure, adding docs, readmes, setup.py etc? There is app that can do these mundane actions for you:** [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django).
 
 Q: What you get after reading this post?
 
-A: Basic understanding how you can automate boring tasks and get
-exciting ones done!
+A: Basic understanding how you can automate boring tasks and get exciting ones done!
 
-Let's start with
-[cookiecutter](https://github.com/audreyr/cookiecutter). What exactly is
-it? It's CLI tool for automatically generating projects from given
-template. What do I mean by that?
+Let's start with [cookiecutter](https://github.com/audreyr/cookiecutter). What exactly is it? It's CLI tool for automatically generating projects from given template. What do I mean by that?
 
-Suppose that when you make new python project you want certain things to
-be setup the same way every time. For instance: `setup.py` or docs
-folders. Thanks to cookiecutter it's possible to automate these things
-so every time you make the new project the boring stuff is already made
-for you.
+Suppose that when you make new python project you want certain things to be setup the same way every time. For instance: `setup.py` or docs folders. Thanks to cookiecutter it's possible to automate these things so every time you make the new project the boring stuff is already made for you.
 
-Django Cookiecutter is made especially for django applications. Based on
-GitHub
-[README](https://github.com/pydanny/cookiecutter-django/blob/master/README.rst)
-it provides:
+Django Cookiecutter is made especially for django applications. Based on GitHub [README](https://github.com/pydanny/cookiecutter-django/blob/master/README.rst) it provides:
 
 > - For Django 1.9
 > - Renders Django projects with 100% test coverage
@@ -55,8 +40,7 @@ And some additional features:
 > - Integration with NewRelic for performance monitoring
 > - Integration with Opbeat for performance monitoring
 
-So it can make a huge improvement in initial project configuration.
-Let's try this out!
+So it can make a huge improvement in initial project configuration. Let's try this out!
 
 After installation via pip by:
 
@@ -98,8 +82,7 @@ Select open_source_license:
 Choose from 1, 2, 3 [1]: 1
 ```
 
-You got the simple django application with celery, sentry, tests, grunt,
-less and docker.
+You got the simple django application with celery, sentry, tests, grunt, less and docker.
 
 Folder structure looks as follows:
 
@@ -173,9 +156,7 @@ $ tree . -a -L 3
     └── .travis.yml
 ```
 
-So as this application follows the [12-Factor](http://12factor.net/)
-application guidelines most of django settings variables are set in an
-environment so it's good to run this in docker.
+So as this application follows the [12-Factor](http://12factor.net/) application guidelines most of django settings variables are set in an environment so it's good to run this in docker.
 
 To install docker on ubuntu type:
 
@@ -185,8 +166,7 @@ $ sudo apt-get install apt-transport-https ca-certificates
 $ sudo sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 
-Now it's time to add entry in `/etc/apt/sources.list.d/docker.list` for
-Ubuntu 14.04
+Now it's time to add entry in `/etc/apt/sources.list.d/docker.list` for Ubuntu 14.04
 
 ```shell
 deb https://apt.dockerproject.org/repo ubuntu-trusty main
@@ -207,10 +187,7 @@ $ sudo service docker start
 $ sudo docker run hello-world
 ```
 
-Now you have Docker! But to be able to use docker in cookiecutter-django
-project there is need for installing additional package called
-[docker-compose](https://docs.docker.com/compose/). It allows to run
-multiple docker containers.
+Now you have Docker! But to be able to use docker in cookiecutter-django project there is need for installing additional package called [docker-compose](https://docs.docker.com/compose/). It allows to run multiple docker containers.
 
 Installation is simple:
 
@@ -227,12 +204,9 @@ $ sudo docker-compose -f dev.yml build
 $ sudo docker-compose -f dev.yml up -d
 ```
 
-`-f` flag means that we specify which yml file is taken for
-configuration (by default it is `docker-compose.yml`) and `-d` flag in
-the second command is for detached mode.
+`-f` flag means that we specify which yml file is taken for configuration (by default it is `docker-compose.yml`) and `-d` flag in the second command is for detached mode.
 
-Now it's time to run basic django commands to migrate data to database
-and to create superuser:
+Now it's time to run basic django commands to migrate data to database and to create superuser:
 
 ```bash
 $ sudo docker-compose -f dev.yml run django python manage.py makemigrations
@@ -240,8 +214,7 @@ $ sudo docker-compose -f dev.yml run django python manage.py migrate
 $ sudo docker-compose -f dev.yml run django python manage.py createsuperuser
 ```
 
-And that's it! You got the working project made in few minutes. If you
-found this post helpful please share it with your friends.
+And that's it! You got the working project made in few minutes. If you found this post helpful please share it with your friends.
 
 ## Resources:
 

@@ -6,15 +6,13 @@ slug: 2019/typescript-function-overloads
 
 **NOTE: This is cross-post from** [my newsletter](https://krzysztofzuraw.com/newsletter). **I publish each email after it’s sent.** [Subscribe](https://buttondown.email/krzysztof_zuraw) **to get more content like this earlier right in your inbox! 📧.**
 
-**Hello** 👋🏻
-Today I want to write a little bit about functions overloads in TypeScript. I will explain what is function overload and how to do it. In the next section, I will cover why you may want to overload your functions and what is a proper way of doing it.
+**Hello** 👋🏻 Today I want to write a little bit about functions overloads in TypeScript. I will explain what is function overload and how to do it. In the next section, I will cover why you may want to overload your functions and what is a proper way of doing it.
 
 During this article, I assume that you have at least basic knowledge of TypeScript.
 
 ## What
 
-Function overloads is a way of telling TypeScript that this function may take different arguments.
-Let’s jump into an example:
+Function overloads is a way of telling TypeScript that this function may take different arguments. Let’s jump into an example:
 
 ```ts
 interface Data {

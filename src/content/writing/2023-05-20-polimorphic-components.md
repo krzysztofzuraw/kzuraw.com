@@ -40,8 +40,7 @@ By passing `asChild` prop you are telling Radix to pass all its props to the chi
 
 ## CVA approach
 
-There is a new library called Class Variance Authority - (CVA for short). While this is more of a replacement for vanilla-extract recipe I think it is worth mentioning here. What if you could export your styles as a recipe and use them in your components instead of using `as` or `asChild`?
-For example:
+There is a new library called Class Variance Authority - (CVA for short). While this is more of a replacement for vanilla-extract recipe I think it is worth mentioning here. What if you could export your styles as a recipe and use them in your components instead of using `as` or `asChild`? For example:
 
 ```tsx
 import { button } from "./components/button"; // CVA styles

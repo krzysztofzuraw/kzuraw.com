@@ -4,8 +4,7 @@ pubDate: 2018-06-15
 slug: 2018/dependency-injection-in-redux-observable
 ---
 
-Imagine that you have following situation: your calls to external api are using helper modules where all request logic lies. For instance, you have
-`backendService`:
+Imagine that you have following situation: your calls to external api are using helper modules where all request logic lies. For instance, you have `backendService`:
 
 ```js
 export const makeRequest = async () => return fetch.get('http://www.some_api.com');
@@ -41,8 +40,7 @@ describe("fetchBackendServiceEpic", () => {
 });
 ```
 
-Can you do better?
-Yes, using dependency injection. Your epic is depended on `backendService`. How can you inject it to your epic? The actual way of doing this is in the documentation : [Injecting Dependencies Into Epics · redux-observable](https://redux-observable.js.org/docs/recipes/InjectingDependenciesIntoEpics.html). Thanks to that you have your epic with dependency injected:
+Can you do better? Yes, using dependency injection. Your epic is depended on `backendService`. How can you inject it to your epic? The actual way of doing this is in the documentation : [Injecting Dependencies Into Epics · redux-observable](https://redux-observable.js.org/docs/recipes/InjectingDependenciesIntoEpics.html). Thanks to that you have your epic with dependency injected:
 
 ```js
 const fetchBackendServiceEpic = (action$, store, { makeRequest }) =>

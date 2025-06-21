@@ -4,8 +4,7 @@ pubDate: 2020-06-04
 slug: 2020/ramda-clamp
 ---
 
-Today I learned that [Ramda](https://ramdajs.com/) has a `clamp` function.
-What is [clamp](https://ramdajs.com/docs/#clamp)? It allows you to set value between `min` & `max`.
+Today I learned that [Ramda](https://ramdajs.com/) has a `clamp` function. What is [clamp](https://ramdajs.com/docs/#clamp)? It allows you to set value between `min` & `max`.
 
 Example:
 

@@ -4,15 +4,11 @@ pubDate: 2020-07-22
 slug: 2020/cron-under-macos
 ---
 
-I'm using plain text to store my information. This plain text is inside a git repo. To back it up I
-need to commit changes & push them to the remote. I was doing that manually. Yet this is not effective.
-I decided to use cron for that. Every 30min I want to execute a script that backs up my wiki.
-How to do that under mac?
+I'm using plain text to store my information. This plain text is inside a git repo. To back it up I need to commit changes & push them to the remote. I was doing that manually. Yet this is not effective. I decided to use cron for that. Every 30min I want to execute a script that backs up my wiki. How to do that under mac?
 
 ## Cron under MacOS
 
-You cannot use cron. Instead Apple encourage to use [launchctl](https://ss64.com/osx/launchctl.html).
-How to set up launchctl? At first you need to create plist file:
+You cannot use cron. Instead Apple encourage to use [launchctl](https://ss64.com/osx/launchctl.html). How to set up launchctl? At first you need to create plist file:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -45,14 +41,9 @@ How to set up launchctl? At first you need to create plist file:
 </plist>
 ```
 
-Maybe you wonder what is `nice` key? After a bit of searching, I found out that it is used for scheduling priority. You can read more about
-it on [man](https://www.manpagez.com/man/3/nice/) page of `nice`.
+Maybe you wonder what is `nice` key? After a bit of searching, I found out that it is used for scheduling priority. You can read more about it on [man](https://www.manpagez.com/man/3/nice/) page of `nice`.
 
-Going back to configuration. For launchctl to pick up your configuration plist file has to be placed
-under `~/Library/LaunchAgents`. I prefer to use already existing plist naming convention: `com.YOURNAME.CONFIGURATION_NAME.plist`
-I named my plist as `com.krzysztofzuraw.wikibackup.plist`. If you have this setup execute `launchctl load com.krzysztofzuraw.wikibackup.plist`.
-Similarly if you need to unload it you can use `launchctl unload com.krzysztofzuraw.wikibackup.plist`.
-To see which launchctl scripts are running try `launchctl list`.
+Going back to configuration. For launchctl to pick up your configuration plist file has to be placed under `~/Library/LaunchAgents`. I prefer to use already existing plist naming convention: `com.YOURNAME.CONFIGURATION_NAME.plist` I named my plist as `com.krzysztofzuraw.wikibackup.plist`. If you have this setup execute `launchctl load com.krzysztofzuraw.wikibackup.plist`. Similarly if you need to unload it you can use `launchctl unload com.krzysztofzuraw.wikibackup.plist`. To see which launchctl scripts are running try `launchctl list`.
 
 My `lanuchctl` script is running but how does `backup.sh` looks like?
 
@@ -66,6 +57,4 @@ git push origin master
 
 ## Summary
 
-If you see to set up cron jobs under MacOS - use [launchctl](https://ss64.com/osx/launchctl.html). You
-can read more at [Mac crontab: Creating MacOS startup jobs with crontab, er, launchd](https://alvinalexander.com/mac-os-x/mac-osx-startup-crontab-launchd-jobs/).
-Original idea from [Using VimWiki](https://thelinell.com/using-vimwiki/).
+If you see to set up cron jobs under MacOS - use [launchctl](https://ss64.com/osx/launchctl.html). You can read more at [Mac crontab: Creating MacOS startup jobs with crontab, er, launchd](https://alvinalexander.com/mac-os-x/mac-osx-startup-crontab-launchd-jobs/). Original idea from [Using VimWiki](https://thelinell.com/using-vimwiki/).

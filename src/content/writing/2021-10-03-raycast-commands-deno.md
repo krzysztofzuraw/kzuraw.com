@@ -4,9 +4,7 @@ pubDate: 2021-10-03
 slug: 2021/how-to-use-deno-in-raycast-scripts-commands
 ---
 
-You can create [Raycast](https://www.raycast.com) script commands using [Deno](https://deno.land).
-Be aware that this is not official way of doing things - you should be using Node scripts. I tested
-Deno scripts and for now they are working just fine but they may broke in the future.
+You can create [Raycast](https://www.raycast.com) script commands using [Deno](https://deno.land). Be aware that this is not official way of doing things - you should be using Node scripts. I tested Deno scripts and for now they are working just fine but they may broke in the future.
 
 To use Deno you need your command file with `ts` or `js` ending and following content:
 

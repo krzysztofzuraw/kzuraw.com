@@ -4,10 +4,7 @@ pubDate: 2017-06-04
 slug: 2017/building-python-packages-for-debian
 ---
 
-**There are many ways how to build & distribute python packages: `pypi`,
-`devpi`. But if you happen to use debian based OSes you can build python
-packages as debian native ones. This blog post is all about it - let's
-go!**
+**There are many ways how to build & distribute python packages: `pypi`, `devpi`. But if you happen to use debian based OSes you can build python packages as debian native ones. This blog post is all about it - let's go!**
 
 Let's say you have following structure of your project:
 
@@ -22,9 +19,7 @@ Let's say you have following structure of your project:
         └── main.py
 ```
 
-How to pack it for debian? First create a new folder in root directory
-of your project: `debian`. Then create a couple of files that are
-required to properly build the package:
+How to pack it for debian? First create a new folder in root directory of your project: `debian`. Then create a couple of files that are required to properly build the package:
 
 `changelog`:
 
@@ -92,23 +87,11 @@ override_dh_builddeb:
     dh_builddeb --destdir=/tmp/python-deb-pkg/debian/dist
 ```
 
-`Changelog` will tell debian packaging tools what version they need to
-build. `Compat` contains a magic number for compatibility issues.
-`copyright` is license and rights. One of the two most important files
-is `control`. It tells what are dependencies that need to be resolved
-before the package will be built and installed. Second is `rules` that
-have makefile like syntax and specify how a package will be built.
+`Changelog` will tell debian packaging tools what version they need to build. `Compat` contains a magic number for compatibility issues. `copyright` is license and rights. One of the two most important files is `control`. It tells what are dependencies that need to be resolved before the package will be built and installed. Second is `rules` that have makefile like syntax and specify how a package will be built.
 
-I'm using here really cool package called
-[`dh-virtualenv`](https://github.com/spotify/dh-virtualenv). It is
-doing all hard work: making sure that `virtualenv` is correctly setup or
-files are in their places. In my example, I tell `dh_virtualenv` to use
-python3.5 which is by default in ubuntu 16.04. In `override_dh_builddeb`
-I specified where build package should be present
-`root_folder/debian/dist`.
+I'm using here really cool package called [`dh-virtualenv`](https://github.com/spotify/dh-virtualenv). It is doing all hard work: making sure that `virtualenv` is correctly setup or files are in their places. In my example, I tell `dh_virtualenv` to use python3.5 which is by default in ubuntu 16.04. In `override_dh_builddeb` I specified where build package should be present `root_folder/debian/dist`.
 
-How to use all these files combined? I use docker for that! I have
-`Dockerfile` inside debian folder:
+How to use all these files combined? I use docker for that! I have `Dockerfile` inside debian folder:
 
 ```docker
 FROM ubuntu:16.04
@@ -132,8 +115,7 @@ WORKDIR /tmp/python-deb-pkg
 ADD . /tmp/python-deb-pkg
 ```
 
-The most interesting line here is the one that builds and install build
-dependencies for my package - `mk-build-deps`.
+The most interesting line here is the one that builds and install build dependencies for my package - `mk-build-deps`.
 
 Everything is controlled via `Makefile` inside the main folder:
 
@@ -165,11 +147,6 @@ Everything is controlled via `Makefile` inside the main folder:
             python-deb-pkg /bin/bash
 ```
 
-`deb` rule is creating a debian package inside docker by
-`dpkg-buildpackage -us -uc -b --changes-option=-udebian/dist/` which
-means that deb file won't be signed and exit directory should be
-`debian/dist`.
+`deb` rule is creating a debian package inside docker by `dpkg-buildpackage -us -uc -b --changes-option=-udebian/dist/` which means that deb file won't be signed and exit directory should be `debian/dist`.
 
-And thats all for today! Repo is available under this
-[address](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/python_deb_pkg).
-Feel free to comment!
+And thats all for today! Repo is available under this [address](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/python_deb_pkg). Feel free to comment!

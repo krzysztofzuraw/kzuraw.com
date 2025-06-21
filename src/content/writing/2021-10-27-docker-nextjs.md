@@ -6,8 +6,7 @@ slug: 2021/on-setting-up-next.js-with-docker-on-google-cloud
 
 One might wonder why would anyone consider Google Cloud as a hosting provider if there's [Vercel](https://vercel.com/)?
 
-You personally, or your organization most likely already has an infrastructure that's
-capable of handling Next.js - you just need to build your app in the Docker.
+You personally, or your organization most likely already has an infrastructure that's capable of handling Next.js - you just need to build your app in the Docker.
 
 ## Next.js and Docker
 
@@ -66,8 +65,7 @@ Docker is running nicely on a local machine but now it is time to enter the Goog
 
 ## Google Cloud Build and Run
 
-First question: what is [Google Cloud Build](https://cloud.google.com/build)? Google says it's their CI/CD platform.
-But you can utilize it to build your docker images. What we are using it for?
+First question: what is [Google Cloud Build](https://cloud.google.com/build)? Google says it's their CI/CD platform. But you can utilize it to build your docker images. What we are using it for?
 
 1. Run test/lint/tsc on PR
 2. Build Next.js application inside docker and tell [Google Cloud Run](https://cloud.google.com/run/) to use it

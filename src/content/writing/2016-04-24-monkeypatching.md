@@ -4,21 +4,13 @@ pubDate: 2016-04-24
 slug: 2016/mocks-and-monkeypatching-in-python
 ---
 
-**Hello, in today's post I will look onto essential part of testing-
-mocks.**
+**Hello, in today's post I will look onto essential part of testing- mocks.**
 
-First of all, what I want to accomplish here is to give you basic
-examples of how to mock data using two tools:
-[mock](https://docs.python.org/3/library/unittest.mock.html) and [pytest
-monkeypatch](https://pytest.org/latest/monkeypatch.html).
+First of all, what I want to accomplish here is to give you basic examples of how to mock data using two tools: [mock](https://docs.python.org/3/library/unittest.mock.html) and [pytest monkeypatch](https://pytest.org/latest/monkeypatch.html).
 
 ## Why bother mocking?
 
-Some of the parts of our application may have dependencies for other
-libraries or objects. To isolate behavior of our parts we need to
-substitute external dependencies. Here comes the mocking. We mock
-external API to have certain behaviors such as proper return values
-that we previously defined.
+Some of the parts of our application may have dependencies for other libraries or objects. To isolate behavior of our parts we need to substitute external dependencies. Here comes the mocking. We mock external API to have certain behaviors such as proper return values that we previously defined.
 
 ## Mocking function
 
@@ -70,21 +62,11 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-What is happening here? Lines 1-4 are for making this code compatible
-between python 2 and 3. In python 3 mock is part of standard library
-whereas in python 2 you need to install by `pip install mock`.
+What is happening here? Lines 1-4 are for making this code compatible between python 2 and 3. In python 3 mock is part of standard library whereas in python 2 you need to install by `pip install mock`.
 
-In line 13 I patched the `square` function. But you have to remember to
-patch it in the same place you use it. For instance, I'm calling
-`square(5)` in test itself so I need to patch it in `__main__`. This is
-the case if I'm running this by `python tests/test_function.py`. If I'm
-using [pytest](https://pytest.org/latest/contents.html) for that I need
-to patch it like `test_function.square`.
+In line 13 I patched the `square` function. But you have to remember to patch it in the same place you use it. For instance, I'm calling `square(5)` in test itself so I need to patch it in `__main__`. This is the case if I'm running this by `python tests/test_function.py`. If I'm using [pytest](https://pytest.org/latest/contents.html) for that I need to patch it like `test_function.square`.
 
-In lines 18-19, I patch `square` and `cube` functions in their module
-because they are used in `main` function. The last two asserts come from
-mock library and are for making sure that mock was called with proper
-values.
+In lines 18-19, I patch `square` and `cube` functions in their module because they are used in `main` function. The last two asserts come from mock library and are for making sure that mock was called with proper values.
 
 The same can be accomplished using `mokeypatching` for py.test:
 
@@ -102,9 +84,7 @@ def test_main_function(monkeypatch):
     assert main(5) == 1
 ```
 
-As you can see I'm using `monkeypatch.setattr` for setting up return
-value for given functions. I'm still need to monkeypatch it in proper
-place: `test_function_pytest` and `function`.
+As you can see I'm using `monkeypatch.setattr` for setting up return value for given functions. I'm still need to monkeypatch it in proper place: `test_function_pytest` and `function`.
 
 ## Mocking classes
 
@@ -158,13 +138,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-At line 13 I patch class `Square` (again be aware if you run this test
-using pytest or standard way). Lines 15 and 16 presents mocking
-instance; at first `mocked_instance` is mock object which by default
-returns another mock and to these `mock.calculate_area` I add
-`return_value` 1. In line 23 I'm using `MagicMock` which is normal mock
-class except it also retrieves magic methods from given object. Lastly I
-use `patch.object` to mock method in `Square` class.
+At line 13 I patch class `Square` (again be aware if you run this test using pytest or standard way). Lines 15 and 16 presents mocking instance; at first `mocked_instance` is mock object which by default returns another mock and to these `mock.calculate_area` I add `return_value` 1. In line 23 I'm using `MagicMock` which is normal mock class except it also retrieves magic methods from given object. Lastly I use `patch.object` to mock method in `Square` class.
 
 The same using pytest:
 
@@ -189,12 +163,9 @@ def test_mocking_classes(monkeypatch):
     assert sq.calculate_area() ==  1
 ```
 
-The issue here is with `test_mocking_class_methods` which works well in
-python 3 but not in python 2. Right now I don't have clear answer to
-this so if you can help I appreciate this!
+The issue here is with `test_mocking_class_methods` which works well in python 3 but not in python 2. Right now I don't have clear answer to this so if you can help I appreciate this!
 
-All examples can be found under this
-[repo](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/blog_mocks).
+All examples can be found under this [repo](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/blog_mocks).
 
 ## References:
 

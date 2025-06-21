@@ -7,8 +7,7 @@ slug: 2023/storybook-vite-config
 
 I have a project that is using Vite.js as a bundler with Storybook to have visual testing of components. I recently updated Storybook from version 5 to 7. Here are a couple of things I had to do to make it work.
 
-Firstly you have to know that Storybook in version 7 will merge project `vite.config.js` to its own.
-What does it mean? It means that all your plugins will work out of the box with Storybook but on the other hand, you need to make sure that your paths in `vite.config.js` are correct. By correct I mean they should be absolute, not relative. Why? Let's say that you have your vite plugin configured to look for `index.tsx` file like this: `entry: "./index.tsx"` - it will work in your project but not in Storybook. It won't work because Storybook will look for `index.tsx` from its directory (by default in the `.storybook` folder), not from the root of your project. So you have to make sure that your paths are absolute. How to do this? You can use the `path` module from Node.js. Here is an example:
+Firstly you have to know that Storybook in version 7 will merge project `vite.config.js` to its own. What does it mean? It means that all your plugins will work out of the box with Storybook but on the other hand, you need to make sure that your paths in `vite.config.js` are correct. By correct I mean they should be absolute, not relative. Why? Let's say that you have your vite plugin configured to look for `index.tsx` file like this: `entry: "./index.tsx"` - it will work in your project but not in Storybook. It won't work because Storybook will look for `index.tsx` from its directory (by default in the `.storybook` folder), not from the root of your project. So you have to make sure that your paths are absolute. How to do this? You can use the `path` module from Node.js. Here is an example:
 
 ```js
 import { resolve } from "path";

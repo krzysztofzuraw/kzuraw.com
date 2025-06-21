@@ -4,21 +4,15 @@ pubDate: 2016-07-16
 slug: 2016/design-by-contract-in-python
 ---
 
-**What exactly is design by contract? What is good and what is bad in
-this approach? What are python libraries that provide support for such
-design? You can find all these answers in this blog series about
-contracts.**
+**What exactly is design by contract? What is good and what is bad in this approach? What are python libraries that provide support for such design? You can find all these answers in this blog series about contracts.**
 
-Recently I read a [Pragmatic
-Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer). In
-this book there is a chapter 21: Design by Contract that stays:
+Recently I read a [Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer). In this book there is a chapter 21: Design by Contract that stays:
 
 > It is a simple yet powerful technique that focuses on documenting (and
 > agreeing to) the rights and responsibilities of software modules to
 > ensure program correctness.
 
-How to achieve this? There are 3 basic expectations of any given
-function/class:
+How to achieve this? There are 3 basic expectations of any given function/class:
 
 1.  **Pre conditions**: What are function requirements in order to be
     called
@@ -26,10 +20,7 @@ function/class:
 3.  **Class invariants**: Conditions that are true after execution of
     function/class
 
-Let's move to the actual implementation in python. I found at least 3
-libraries that are made to provide help while using contracts. I'll
-start from the first one:
-[py.contracts](https://pypi.python.org/pypi/PyContracts).
+Let's move to the actual implementation in python. I found at least 3 libraries that are made to provide help while using contracts. I'll start from the first one: [py.contracts](https://pypi.python.org/pypi/PyContracts).
 
 There is a reddit port:
 
@@ -43,9 +34,7 @@ class ExternalAPIPort(object):
         return self.adapter.search(query, *args, **kwargs)
 ```
 
-I want to make sure that query is a string. What is more, I want this
-string not to be empty. And I return `search` should return nested list.
-How do I contract it using py.contracts?
+I want to make sure that query is a string. What is more, I want this string not to be empty. And I return `search` should return nested list. How do I contract it using py.contracts?
 
 ```python
 from contracts import contract
@@ -64,9 +53,7 @@ Expected a list, got 'int'.
 checking: list(str)   for value: Instance of <class 'int'>: 1
 ```
 
-Right now I knew because of contract that this `search` method will take
-query parameter which has to be string with length more than 0
-(precondition) and returns list of strings (`postcondition`).
+Right now I knew because of contract that this `search` method will take query parameter which has to be string with length more than 0 (precondition) and returns list of strings (`postcondition`).
 
 The same can be accomplished with metaclasses:
 
@@ -87,9 +74,7 @@ class ExternalAPIPort(BasePort):
     return self.adapter.search(query, *args, **kwargs)
 ```
 
-This code will work for python 2. If you want to use `ContractsMeta`
-with python 3 you have to use function `with_metaclass` or write
-`BasePort(object, metaclass=ContractsMeta)`:
+This code will work for python 2. If you want to use `ContractsMeta` with python 3 you have to use function `with_metaclass` or write `BasePort(object, metaclass=ContractsMeta)`:
 
 ```python
 from contracts import contract, ContractsMeta, with_metaclass
@@ -102,24 +87,18 @@ from contracts import contract, ContractsMeta, with_metaclass
         pass
 ```
 
-What I like in this library is a possibility to disable contracts by
-calling `contracts.disable_all()` or using `DISABLE_CONTRACTS`
-environmental variable.
+What I like in this library is a possibility to disable contracts by calling `contracts.disable_all()` or using `DISABLE_CONTRACTS` environmental variable.
 
-Unfortunately, py.contracts doesn't provide way to use invariants but
-you always can use `assert`.
+Unfortunately, py.contracts doesn't provide way to use invariants but you always can use `assert`.
 
-This library is called
-[`zope.interface`](https://docs.zope.org/zope.interface/). From its GitHub
-page:
+This library is called [`zope.interface`](https://docs.zope.org/zope.interface/). From its GitHub page:
 
 > Interfaces are a mechanism for labeling objects as conforming to a
 > given API or contract. So, this package can be considered as
 > implementation of the Design By Contract methodology support in
 > Python.
 
-How is it translating to my example of `ExternalAPIPort` from the last
-post? First I have to create interface for my port:
+How is it translating to my example of `ExternalAPIPort` from the last post? First I have to create interface for my port:
 
 ```python
 from zope.interface import Interface, implements
@@ -172,8 +151,7 @@ class ExternalAPIPort(object):
         return self.adapter.search(query, *args, **kwargs)
 ```
 
-Thanks to that I have access to some checks that can help me with
-testing:
+Thanks to that I have access to some checks that can help me with testing:
 
 ```python
 >>> IExternalAPIPort.implementedBy(ExternalAPIPort
@@ -182,8 +160,7 @@ True
 True
 ```
 
-But how to write a contract? It's simple- let's start by creating
-invariant:
+But how to write a contract? It's simple- let's start by creating invariant:
 
 ```python
 def search_invariant(obj):
@@ -199,8 +176,7 @@ def search():
    pass
 ```
 
-Right now when you run it, you will receive following error that query
-either has to be a string or not be empty:
+Right now when you run it, you will receive following error that query either has to be a string or not be empty:
 
 ```python
 File "/Development/reddit-stars/reddit_stars/urls.py", line 19, in <module>
@@ -220,8 +196,7 @@ ValueError: query has to be string
 ValueError: query cannot be empty
 ```
 
-Contract works! It assures that in running time that query will have to
-have values that are specified in a contract.
+Contract works! It assures that in running time that query will have to have values that are specified in a contract.
 
 You can even declare your own invariant errors like this:
 
@@ -245,21 +220,13 @@ And right now traceback will show custom error:
 external_api.external_api_port.QueryError: QueryError(query cannot be empty)
 ```
 
-Unfortunately, I couldn't find the way to declare contract for return
-`zope.intefrace`. If you found one please let me know
+Unfortunately, I couldn't find the way to declare contract for return `zope.intefrace`. If you found one please let me know
 
-I wanted to write about another library
-[`dpcontrancts`](https://pypi.python.org/pypi/dpcontracts/0.1.0), but
-unfortunately, I wasn't able to download it from PyPi.
+I wanted to write about another library [`dpcontrancts`](https://pypi.python.org/pypi/dpcontracts/0.1.0), but unfortunately, I wasn't able to download it from PyPi.
 
-When I was reading and reviewing material for previous posts I found out
-that there is a way to use python standard library `abc.ABCMeta` for
-contracts- I decided to give a try.
+When I was reading and reviewing material for previous posts I found out that there is a way to use python standard library `abc.ABCMeta` for contracts- I decided to give a try.
 
-First, you have to know what are metaclasses: [understanding python
-metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/)
-and what are they needed for: [Why use Abstract Base Classes in
-Python?](http://stackoverflow.com/questions/3570796/why-use-abstract-base-classes-in-python).
+First, you have to know what are metaclasses: [understanding python metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/) and what are they needed for: [Why use Abstract Base Classes in Python?](http://stackoverflow.com/questions/3570796/why-use-abstract-base-classes-in-python).
 
 After this introduction let's jump straight to the code:
 
@@ -284,28 +251,11 @@ class ExternalAPIPort(ExternalAPIPortMetaclass):
         return self.adapter.search(query, *args, **kwargs)
 ```
 
-What is happening here? I defined `ExternalAPIPortMetaclass` as a
-metaclass that inherits from `abc.ABCMeta` (This code snippet is valid
-for python 3). Then I decided to make abstract method called `search` so
-all instances of that metaclass will have to provide such function.
-Inside this code, I check whether provided query is a string or not. In
-`ExternalAPIPort` which inherits from previously defined I have to call
-super for `ExternalAPIPortMetaclass` search method. Thanks to that I can
-make a validation of query. Right after that I return search
-query.
+What is happening here? I defined `ExternalAPIPortMetaclass` as a metaclass that inherits from `abc.ABCMeta` (This code snippet is valid for python 3). Then I decided to make abstract method called `search` so all instances of that metaclass will have to provide such function. Inside this code, I check whether provided query is a string or not. In `ExternalAPIPort` which inherits from previously defined I have to call super for `ExternalAPIPortMetaclass` search method. Thanks to that I can make a validation of query. Right after that I return search query.
 
-What I don't like there is fact that I need to add additional line of
-code inside `ExternalAPIPort.search` with `super` for checking
-contract which can trick others. That's why I think that metaclasses and
-contracts are two different topic besides that they have some pieces in
-common (both are designed for telling: here I make contract that you
-must obey).
+What I don't like there is fact that I need to add additional line of code inside `ExternalAPIPort.search` with `super` for checking contract which can trick others. That's why I think that metaclasses and contracts are two different topic besides that they have some pieces in common (both are designed for telling: here I make contract that you must obey).
 
-To sum up this whole series I believe contracts are useful for telling
-others that I made agreement that this function has to take and return
-certain value. In python word where is so called duck typing and I don't
-think they are necessary in every case but designing by contracts can be
-helpful as I shown in examples.
+To sum up this whole series I believe contracts are useful for telling others that I made agreement that this function has to take and return certain value. In python word where is so called duck typing and I don't think they are necessary in every case but designing by contracts can be helpful as I shown in examples.
 
 Thank you for reading!
 

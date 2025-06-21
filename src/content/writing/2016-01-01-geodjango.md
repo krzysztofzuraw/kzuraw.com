@@ -4,42 +4,31 @@ pubDate: 2016-01-01
 slug: 2016/geodjango-and-leaflet
 ---
 
-**Today is the day, when I will start my blog. I would like to publish
-new posts once a week.** **The comments and feedback will be pretty much
-appreciated as I have started blogging in English.**
+**Today is the day, when I will start my blog. I would like to publish new posts once a week.** **The comments and feedback will be pretty much appreciated as I have started blogging in English.**
 
-I assume that the Reader knows how to run basic Django application.
-If this is not the case, I encourage you to start
-[here](https://docs.djangoproject.com/en/1.9/intro/tutorial01/).
+I assume that the Reader knows how to run basic Django application. If this is not the case, I encourage you to start [here](https://docs.djangoproject.com/en/1.9/intro/tutorial01/).
 
 So, let's start:
 
 First of all, what is GeoDjango?
 
-From official GeoDjango
-[documentation](https://docs.djangoproject.com/en/dev/ref/contrib/gis/):
+From official GeoDjango [documentation](https://docs.djangoproject.com/en/dev/ref/contrib/gis/):
 
 > GeoDjango intends to be a world-class geographic Web framework. Its
 > goal is to make it as simple as possible to build GIS Web applications
 > and harness the power of spatially enabled data.
 
-To run GeoDjango you have to install some additional packages. In ubuntu
-you can easily do this way:
+To run GeoDjango you have to install some additional packages. In ubuntu you can easily do this way:
 
 ```shell
 $ sudo apt-get install binutils libproj-dev gdal-bin
 ```
 
-`Gdal-bin` package is not necessary but it's very helpful so I encourage
-to install it.
+`Gdal-bin` package is not necessary but it's very helpful so I encourage to install it.
 
-Then you need to choose what database you will use with your GeoDjango
-project. I personally chosen PostgreSQL with PostGIS because it support
-all of the GeoDjango features according to this
-[table](https://docs.djangoproject.com/en/dev/ref/contrib/gis/db-api/#spatial-lookup-compatibility).
+Then you need to choose what database you will use with your GeoDjango project. I personally chosen PostgreSQL with PostGIS because it support all of the GeoDjango features according to this [table](https://docs.djangoproject.com/en/dev/ref/contrib/gis/db-api/#spatial-lookup-compatibility).
 
-After starting project, and making new application add few lines to your
-settings.py:
+After starting project, and making new application add few lines to your settings.py:
 
 ```python
 DATABASES = {
@@ -69,22 +58,16 @@ INSTALLED_APPS = (
  )
 ```
 
-To actually show some data we need it first. In this project I'll use
-[shp](https://en.wikipedia.org/wiki/Shapefile) files and points with
-coordinates.
+To actually show some data we need it first. In this project I'll use [shp](https://en.wikipedia.org/wiki/Shapefile) files and points with coordinates.
 
-There is a lot of sites with free shp files available but I will choose
-one for Poland. The shape file are in zip file. So go and grab them:
+There is a lot of sites with free shp files available but I will choose one for Poland. The shape file are in zip file. So go and grab them:
 
 ```shell
 wget ftp://91.223.135.109/prg/jednostki_administracyjne.zip
 $ mkdir data && unzip jednostki_administracyjne.zip -d data
 ```
 
-I'm going to use only 1 shape file from this zip called 'województwa.shp'
-(voivodeships). After unzipping you want to examine contents of
-shape files. You can do it in tool like
-[QuantumGIS](http://www.qgis.org/pl/site/).
+I'm going to use only 1 shape file from this zip called 'województwa.shp' (voivodeships). After unzipping you want to examine contents of shape files. You can do it in tool like [QuantumGIS](http://www.qgis.org/pl/site/).
 
 In QGIS this shape file presents as follows:
 
@@ -149,17 +132,13 @@ PROJCS["ETRS89 / Poland CS92",
    typ_bledu: String (255.0)
 ```
 
-We can make model representing this data in our application by hand but
-it's django so you can type:
+We can make model representing this data in our application by hand but it's django so you can type:
 
 ```shell
 $ ./manage.py ogrinspect data/PRG_jednostki_administracyjne_v10/województwa.shp Voivodeship --mapping --srid 2180 --multi >> voivodeships/models.py
 ```
 
-Where `--mapping` tells you to generate mapping used to load data from
-shape file, `--srid` sets the [SRID](https://en.wikipedia.org/wiki/SRID)
-for the geographic field and --multi sets geographic field to
-MultiPolygonField
+Where `--mapping` tells you to generate mapping used to load data from shape file, `--srid` sets the [SRID](https://en.wikipedia.org/wiki/SRID) for the geographic field and --multi sets geographic field to MultiPolygonField
 
 Our voivodeships/models.py will look like this:
 
@@ -241,9 +220,7 @@ voivodeship_mapping = {
 }
 ```
 
-Where under Voivodeship model we have all fields from shp file and in
-`voivodeship_mapping`we got proper mapping for loading data. I added
-`__str__` and `__unicode__` for convenience.
+Where under Voivodeship model we have all fields from shp file and in `voivodeship_mapping`we got proper mapping for loading data. I added `__str__` and `__unicode__` for convenience.
 
 Let's add an admin for our voivodeship application by editing admin.py:
 
@@ -254,9 +231,7 @@ from .models import Voivodeship
 admin.site.register(Voivodeship, admin.OSMGeoAdmin)
 ```
 
-After making and executing migrations to your database we can load
-shapes with voivodeships. To do this let's create load.py with following
-contents:
+After making and executing migrations to your database we can load shapes with voivodeships. To do this let's create load.py with following contents:
 
 ```python
 import os
@@ -305,9 +280,7 @@ def run(verbose=True):
     lm.save(strict=True, verbose=verbose)
 ```
 
-We don't need to provide any transform in LayerMapping call because a
-correct srid is already there. After saving the file run load.py from
-django shell:
+We don't need to provide any transform in LayerMapping call because a correct srid is already there. After saving the file run load.py from django shell:
 
 ```python
 >>> from voivodeships import load
@@ -316,9 +289,7 @@ django shell:
 # IntegrityError
 ```
 
-We got this IntegrityError because our models fields does not allow
-empty values in `wazny_od` field and this shp has some empty values. To
-avoid such errors we can edit Voivodeship model fields:
+We got this IntegrityError because our models fields does not allow empty values in `wazny_od` field and this shp has some empty values. To avoid such errors we can edit Voivodeship model fields:
 
 ```python
 # rest of code here ...
@@ -335,8 +306,7 @@ class Voivodeship(models.Model):
 # rest of code here...
 ```
 
-Rerun `./manage.py makemigrations` and `./manage.py migrate` then try one
-more time to run load.py
+Rerun `./manage.py makemigrations` and `./manage.py migrate` then try one more time to run load.py
 
 ```python
 from voivodeships import load
@@ -345,13 +315,11 @@ load.run()
 # 15 times more
 ```
 
-When you run `./manage.py runserver` and go to the admin site you can see
-that geometric field is displayed in form of a map:
+When you run `./manage.py runserver` and go to the admin site you can see that geometric field is displayed in form of a map:
 
 ![Dolnoslaskie Voivodeship](../../assets/2016-01-01-dolnoslaskie.jpg)
 
-To make our map more robust let's add additional data (points). There
-are 16 points in capitals of polish voivodeships in CSV file.
+To make our map more robust let's add additional data (points). There are 16 points in capitals of polish voivodeships in CSV file.
 
 ```shell
 "Rzeszów","50.04015435","22.006124806535"
@@ -411,13 +379,9 @@ def point_load():
 
 Then import load.py in django shell and run `point_load()`.
 
-Ok, that's all for this post. Stay tuned for the next part where I show
-how display data on actual map.
+Ok, that's all for this post. Stay tuned for the next part where I show how display data on actual map.
 
-After loading data to GeoDjango application now, it's time to present it
-to the user. You can use django template tag like `{{object}}` but I
-think it's better to provide api endpoints. I will be using GeoDjango
-builtin GeoJSON serializer. To do this declare new views in views.py:
+After loading data to GeoDjango application now, it's time to present it to the user. You can use django template tag like `{{object}}` but I think it's better to provide api endpoints. I will be using GeoDjango builtin GeoJSON serializer. To do this declare new views in views.py:
 
 ```python
 from django.http import HttpResponse
@@ -441,8 +405,7 @@ SERIALIZATION_MODULES = {
   }
 ```
 
-[GeoJSON](http://geojson.org/) is open format for encoding geographical
-data. It's based on JSON.
+[GeoJSON](http://geojson.org/) is open format for encoding geographical data. It's based on JSON.
 
 Then add lines to urls.py:
 
@@ -462,20 +425,15 @@ As you can see GeoDjango displays data from database in GeoJSON:
 
 ![GeoJSON from GeoDjango](../../assets/2016-01-01-geojson.jpg)
 
-It's nice but end user need to see results on the map not in JSON format
-so I use [Leaflet.js](http://leafletjs.com/).
+It's nice but end user need to see results on the map not in JSON format so I use [Leaflet.js](http://leafletjs.com/).
 
-You can download leaflet.js from the web page but there is a better way:
-[django-leaflet](https://github.com/makinacorpus/django-leaflet). It's
-django application with allows you embed leaflet to django project.
-Install it by:
+You can download leaflet.js from the web page but there is a better way: [django-leaflet](https://github.com/makinacorpus/django-leaflet). It's django application with allows you embed leaflet to django project. Install it by:
 
 ```bash
 $ pip install django-leaflet
 ```
 
-Then make sure that `leaflet` is added to `INSTALLED_APPS` in
-settings.py:
+Then make sure that `leaflet` is added to `INSTALLED_APPS` in settings.py:
 
 ```python
 INSTALLED_APPS = (
@@ -502,8 +460,7 @@ urlpatterns = [# rest of urls
                url(r'^$', MainPageView.as_view()),]
 ```
 
-After this add new `index.html` under
-`voivodeships/templates/voivodeships/index.html` with this content:
+After this add new `index.html` under `voivodeships/templates/voivodeships/index.html` with this content:
 
 ```html
 <html>
@@ -517,13 +474,11 @@ After this add new `index.html` under
 </html>
 ```
 
-And going to the web page with running GeoDjango application you can see
-map:
+And going to the web page with running GeoDjango application you can see map:
 
 ![Basic Leaflet.js map](../../assets/2016-01-01-leaflet.jpg)
 
-Thanks to `django-leaflet` you can control behavior of all maps. Let add
-the following content to end of settings.py:
+Thanks to `django-leaflet` you can control behavior of all maps. Let add the following content to end of settings.py:
 
 ```python
 LEAFLET_CONFIG = {
@@ -534,8 +489,7 @@ LEAFLET_CONFIG = {
 }
 ```
 
-But still map is not taking full space in the web page so let's add more
-CSS lines to fix that in index.html:
+But still map is not taking full space in the web page so let's add more CSS lines to fix that in index.html:
 
 ```html
 <head>
@@ -549,14 +503,7 @@ CSS lines to fix that in index.html:
 </head>
 ```
 
-One of the Leaflet.js strong points is huge extensions
-[database](http://leafletjs.com/plugins.html). In this project I will
-use few of them including:
-[`leaflet-ajax`](https://github.com/calvinmetcalf/leaflet-ajax),
-[`leaflet-spin`](https://github.com/makinacorpus/Leaflet.Spin),
-[`markercluster`](https://github.com/Leaflet/Leaflet.markercluster). It's
-up to you how you want to install it. I will use
-[bower](http://bower.io/) for that:
+One of the Leaflet.js strong points is huge extensions [database](http://leafletjs.com/plugins.html). In this project I will use few of them including: [`leaflet-ajax`](https://github.com/calvinmetcalf/leaflet-ajax), [`leaflet-spin`](https://github.com/makinacorpus/Leaflet.Spin), [`markercluster`](https://github.com/Leaflet/Leaflet.markercluster). It's up to you how you want to install it. I will use [bower](http://bower.io/) for that:
 
 ```bash
 $ bower install leaflet-ajax leaflet-spin leaflet.markerculster
@@ -605,15 +552,9 @@ After installation got to index.html and use these plugins:
 </body>
 ```
 
-I added new function `map_init_basic` which is a callback for
-django-leaflet tag. Then thanks to leaflet-ajax I get points and
-voivodeships GeoJSONs from GeoDjango. Moreover, I use function from
-leaflet.js: `onEachFeature`. This function add popup with the name of
-point or voivodeship.
+I added new function `map_init_basic` which is a callback for django-leaflet tag. Then thanks to leaflet-ajax I get points and voivodeships GeoJSONs from GeoDjango. Moreover, I use function from leaflet.js: `onEachFeature`. This function add popup with the name of point or voivodeship.
 
-There is one problem. GeoJSON with voivodeship is so accurate that
-deserializing takes a lot of time (about 41 sec). So one of the solution
-is to dump GeoJSON to cache, I will use Redis as a cache database.
+There is one problem. GeoJSON with voivodeship is so accurate that deserializing takes a lot of time (about 41 sec). So one of the solution is to dump GeoJSON to cache, I will use Redis as a cache database.
 
 First, install and check if Redis is working by:
 
@@ -648,9 +589,7 @@ CACHES = {
 }
 ```
 
-What is important in `MIDDLEWARE_CLASSES` is order:
-`UpdateCacheMiddleware` should go before `CommonMiddleware` and
-`FetchFromCacheMiddleware` is supposed to be last.
+What is important in `MIDDLEWARE_CLASSES` is order: `UpdateCacheMiddleware` should go before `CommonMiddleware` and `FetchFromCacheMiddleware` is supposed to be last.
 
 Lastly, add cache to `voivodeships_view` in views.py:
 
@@ -666,12 +605,9 @@ def voivodeships_view(request):
     return HttpResponse(voivodeships, content_type='json')
 ```
 
-Right now GeoJSON will be loaded from the database. After reloading the
-web page, django will get results from cache.
+Right now GeoJSON will be loaded from the database. After reloading the web page, django will get results from cache.
 
-That's all: you have working GeoDjango application. The github repo is
-under this
-[link](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/blog_geodjango_leaflet)
+That's all: you have working GeoDjango application. The github repo is under this [link](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/blog_geodjango_leaflet)
 
 ## Update 08.01.16:
 

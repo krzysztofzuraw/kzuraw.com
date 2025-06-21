@@ -4,8 +4,7 @@ pubDate: 2020-03-07
 slug: 2020/testing-gatsby-blog-with-cypress
 ---
 
-In this blog post, I will write about configuring [Cypress.io](https://www.cypress.io/) to work
-with [Gatsby.js](https://github.com/gatsbyjs/gatsby) based blog.
+In this blog post, I will write about configuring [Cypress.io](https://www.cypress.io/) to work with [Gatsby.js](https://github.com/gatsbyjs/gatsby) based blog.
 
 Let's start by installing required packages from npm (I assume that you have already installed gatsby):
 
@@ -26,8 +25,7 @@ also make sure to add the following `scripts` to `package.json`:
 }
 ```
 
-After that, you need to tell cypress your gatsby.js site `baseUrl` by specifying it inside `cypress.json` in
-the root of your project:
+After that, you need to tell cypress your gatsby.js site `baseUrl` by specifying it inside `cypress.json` in the root of your project:
 
 ```json
 {
@@ -35,16 +33,11 @@ the root of your project:
 }
 ```
 
-If you then run `npm run cypress:open` and wait a little bit when cypress is verifying itself
-(if you are on OSX) after a while, you should see a cypress dashboard with a welcoming message.
-You can close it.
+If you then run `npm run cypress:open` and wait a little bit when cypress is verifying itself (if you are on OSX) after a while, you should see a cypress dashboard with a welcoming message. You can close it.
 
 ![Dashboard with e2e test](../../assets/2020-03-07-dashboard.jpg)
 
-When you look into your files you may see that there is a new folder called `cypress` created. This
-is the place where you gonna store your e2e tests.
-For now, I recommend keeping `cypress/integration/main.spec.ts/js`.
-Inside this file you can start writing your first test:
+When you look into your files you may see that there is a new folder called `cypress` created. This is the place where you gonna store your e2e tests. For now, I recommend keeping `cypress/integration/main.spec.ts/js`. Inside this file you can start writing your first test:
 
 ```ts
 it("should render the home page", () => {
@@ -68,15 +61,11 @@ If you want to add typescript support create `cypress/tsconfig.json`:
 }
 ```
 
-You are now ready to run your first test 🎉. You can start by running `npm run dev` and when gatsby
-development server is on, switch to the other terminal tab and execute `npm run cypress:run`.
-Your tests should start - if they fail you can see screenshots & videos inside: `cypress/videos`
-and `cypress/screenshots`. I recommend adding those paths to gitignore.
+You are now ready to run your first test 🎉. You can start by running `npm run dev` and when gatsby development server is on, switch to the other terminal tab and execute `npm run cypress:run`. Your tests should start - if they fail you can see screenshots & videos inside: `cypress/videos` and `cypress/screenshots`. I recommend adding those paths to gitignore.
 
 ![Headless e2e test run output](../../assets/2020-03-07-output.jpg)
 
-You may spot `test:e2e:ci` inside `package.json` scripts. It is used to run cypres on my PRs using
-github actions:
+You may spot `test:e2e:ci` inside `package.json` scripts. It is used to run cypres on my PRs using github actions:
 
 ```yaml
 jobs:
@@ -95,8 +84,7 @@ jobs:
         CI: true
 ```
 
-There is also already made [github-action](https://github.com/cypress-io/github-action). To use it
-you have to add following entry in your workflow file (under `jobs` section):
+There is also already made [github-action](https://github.com/cypress-io/github-action). To use it you have to add following entry in your workflow file (under `jobs` section):
 
 ```yaml
 cypress-run:
@@ -113,12 +101,8 @@ cypress-run:
 
 A full example of config is [here](https://github.com/krzysztofzuraw/blog/blob/master/.github/workflows/main.yml#L13-L26).
 
-That's all. I don't have many e2e tests - I'm using them as a way to check if dependency updates made
-by [Dependabot](https://dependabot.com/) not only pass TypeScript complicator but if they do not
-break rendering of my blog.
+That's all. I don't have many e2e tests - I'm using them as a way to check if dependency updates made by [Dependabot](https://dependabot.com/) not only pass TypeScript complicator but if they do not break rendering of my blog.
 
 ## Summary
 
-In this blog post, I presented a way to use [Cypress.io](https://www.cypress.io/) to test
-[Gatsby.js](https://github.com/gatsbyjs/gatsby) blog. You can find how it works in action inside
-my blog [repository](https://github.com/krzysztofzuraw/blog).
+In this blog post, I presented a way to use [Cypress.io](https://www.cypress.io/) to test [Gatsby.js](https://github.com/gatsbyjs/gatsby) blog. You can find how it works in action inside my blog [repository](https://github.com/krzysztofzuraw/blog).

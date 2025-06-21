@@ -4,11 +4,9 @@ pubDate: 2016-01-29
 slug: 2016/python-class-decorators
 ---
 
-**Today post will be about syntactic sugar of python
-language-decorators.I will concentrate on class decorators.**
+**Today post will be about syntactic sugar of python language-decorators.I will concentrate on class decorators.**
 
-Let's start with basic example of decorator defined by class in
-`example_1`:
+Let's start with basic example of decorator defined by class in `example_1`:
 
 ```python
 class decorator(object):
@@ -35,10 +33,7 @@ $ python example_1.py
 Called func with args: (1, 2)
 ```
 
-But there is another special method that can be used in such cases:
-`__get__`. This is used for example in implementation of
-[cached_property](https://github.com/django/django/blob/master/django/utils/functional.py#L19)
-decorator in django.
+But there is another special method that can be used in such cases: `__get__`. This is used for example in implementation of [cached_property](https://github.com/django/django/blob/master/django/utils/functional.py#L19) decorator in django.
 
 Let's look onto `example_2`:
 
@@ -77,10 +72,7 @@ if __name__ == '__main__':
     print(apple.shape)
 ```
 
-What is happening here? Instead of implementing `__call__` we got access
-to get the certain attribute. It's useful when we want to implement
-logic to e.g properties. Here I implemented full descriptor. Running
-this example results is this output:
+What is happening here? Instead of implementing `__call__` we got access to get the certain attribute. It's useful when we want to implement logic to e.g properties. Here I implemented full descriptor. Running this example results is this output:
 
 ```bash
 $ python example_2.py
@@ -92,8 +84,7 @@ triangle
 Deleting <__main__.Apple object at 0x7ff05de056d0>
 ```
 
-You can also decorate classes and functions at the same time. Consider
-`example_3.py`:
+You can also decorate classes and functions at the same time. Consider `example_3.py`:
 
 ```python
 def decorator(F):
@@ -124,9 +115,7 @@ Called (<__main__.C object at 0x7f28ce438590>, 1, 2)
 Called (3, 4)
 ```
 
-Here the decorator wraps either class or function. In the first case
-tuple with args contains only variables passed to the unction. In the
-class call in args, there is also an instance of C class.
+Here the decorator wraps either class or function. In the first case tuple with args contains only variables passed to the unction. In the class call in args, there is also an instance of C class.
 
 It's also possible to decorate whole classes, like in example_4:
 
@@ -162,10 +151,6 @@ Getting the x of <__main__.C object at 0x7fed2468f750>
 1
 ```
 
-In this example, the class Wrapper on `__init__` calls the class with
-args and store it under `self.wrapped`. So `cls(*args)` is the same as
-`C(1,2)`.
+In this example, the class Wrapper on `__init__` calls the class with args and store it under `self.wrapped`. So `cls(*args)` is the same as `C(1,2)`.
 
-Most of this examples are taken from book [Learning Python 5th
-Edition](http://www.amazon.com/gp/product/1449355730?keywords=learning%20python%205th%20edition&qid=1454103755&ref_=sr_1_1&sr=8-1)
-by Mark Lutz.
+Most of this examples are taken from book [Learning Python 5th Edition](http://www.amazon.com/gp/product/1449355730?keywords=learning%20python%205th%20edition&qid=1454103755&ref_=sr_1_1&sr=8-1) by Mark Lutz.

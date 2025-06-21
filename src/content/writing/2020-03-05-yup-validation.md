@@ -4,12 +4,9 @@ pubDate: 2020-03-05
 slug: 2020/yup-validation-one-field-required-but-not-both-at-the-same-time
 ---
 
-Recently I was working with [yup](https://github.com/jquense/yup) for form validation and
-I faced the following problem:
+Recently I was working with [yup](https://github.com/jquense/yup) for form validation and I faced the following problem:
 
-I have two fields inside my form. I want the user to provide one of them but not both at the same time.
-I've played a little bit with different ideas to get solution below. It is using [test](https://github.com/jquense/yup#mixedtestname-string-message-string--function-test-function-schema) and [when](https://github.com/jquense/yup#mixedwhenkeys-string--arraystring-builder-object--value-schema-schema-schema) functions
-from yup:
+I have two fields inside my form. I want the user to provide one of them but not both at the same time. I've played a little bit with different ideas to get solution below. It is using [test](https://github.com/jquense/yup#mixedtestname-string-message-string--function-test-function-schema) and [when](https://github.com/jquense/yup#mixedwhenkeys-string--arraystring-builder-object--value-schema-schema-schema) functions from yup:
 
 ```tsx
 import { object, string } from 'yup';
@@ -53,5 +50,4 @@ const schema = object().shape(
 );
 ```
 
-If you want you can extract it to its own function via [addMethod](https://github.com/jquense/yup#yupaddmethodschematype-schema-name-string-method--schema-void). That's all 🎉. Now user
-should get and error when they provide both `userName` & `userEmail`.
+If you want you can extract it to its own function via [addMethod](https://github.com/jquense/yup#yupaddmethodschematype-schema-name-string-method--schema-void). That's all 🎉. Now user should get and error when they provide both `userName` & `userEmail`.
