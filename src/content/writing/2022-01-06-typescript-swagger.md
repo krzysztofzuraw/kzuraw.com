@@ -53,4 +53,4 @@ What can be improved?
 
 What else you can use?
 
-- Generating types from [protobuff](https://developers.google.com/protocol-buffers/)
+- Generating types from [`protobuff`](https://developers.google.com/protocol-buffers/)

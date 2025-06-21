@@ -115,8 +115,6 @@ It looks almost the same as for normal function but here `getData` method is ove
 
 In this post, I presented a way of telling TypeScript that the same function can be called with different parameters or returns different results. This is a function overloading. You can overload class methods too. In the simplest example, you need to write a declaration of override function at the top of a function definition.
 
-Do you use it? If so where? Write to me at krzysztof.zuraw(at)fastmail.com.
-
 You can find all playgrounds links here:
 
 - [problem](http://bit.ly/functionProblem)

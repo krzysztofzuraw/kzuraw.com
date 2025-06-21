@@ -42,4 +42,4 @@ const config = {
 };
 ```
 
-Other than those two issues migrating to Storybook 7 was quite nice. Storybook has even a nice codemod to migrate from `storiesOf` to the new CSF [format](https://storybook.js.org/docs/react/migration-guide#storiesof-to-csf). That is all for today and I hope this will help you to migrate your project to Storybook 7.
+Other than those two issues migrating to Storybook 7 was quite nice. Storybook has even a nice `codemod` to migrate from `storiesOf` to the new CSF [format](https://storybook.js.org/docs/react/migration-guide#storiesof-to-csf). That is all for today and I hope this will help you to migrate your project to Storybook 7.

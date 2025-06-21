@@ -10,5 +10,5 @@ If you need to add [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>) to 
 #!/usr/bin/env -S deno run --allow-read --allow-write
 ```
 
-Now if you need to exectue script type: `./script.ts` and you
+Now if you need to execute script type: `./script.ts` and you
 are done 🎉.

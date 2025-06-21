@@ -99,7 +99,7 @@ of invocations of the command will be much less than the number of
 matched files.
 
 Next one `clean-build` is for removing build artifacts. In `isort` shell
-is executing isort command with proper attributes, `-c` flag is for
+is executing `isort` command with proper attributes, `-c` flag is for
 reading commands from a string rather than from standard input. `lint`
 and `run` works on the same pattern. In `test` I added the additional
 rule to execute before actual tests- `clean-pyc`. Last `docker-run` rule

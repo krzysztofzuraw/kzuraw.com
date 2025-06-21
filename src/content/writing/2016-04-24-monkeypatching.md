@@ -15,9 +15,9 @@ monkeypatch](https://pytest.org/latest/monkeypatch.html).
 ## Why bother mocking?
 
 Some of the parts of our application may have dependencies for other
-libraries or objects. To isolate behaviour of our parts we need to
-substitue external dependencies. Here comes the mocking. We mock
-external API to have certain behaviours such as proper return values
+libraries or objects. To isolate behavior of our parts we need to
+substitute external dependencies. Here comes the mocking. We mock
+external API to have certain behaviors such as proper return values
 that we previously defined.
 
 ## Mocking function

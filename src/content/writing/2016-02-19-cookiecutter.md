@@ -38,7 +38,7 @@ it provides:
 > - AngularJS
 > - 12-Factor based settings via django-environ
 > - Optimized development and production settings
-> - Registration via django-allauth
+> - Registration via `django-allauth`
 > - Comes with custom user model ready to go.
 > - Grunt build for compass and livereload
 > - Basic e-mail configurations for sending emails via Mailgun

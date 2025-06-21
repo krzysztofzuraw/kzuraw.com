@@ -104,5 +104,3 @@ class WrongUser extends AbstractUser {}
 Abstract class in TypeScript can be created with `abstract` keyword before name of class. It is
 mainly used as a way of sharing implementations between classes that implements those abstract
 classes. You can find more info about them on [TypeScript handbook](https://www.typescriptlang.org/docs/handbook/classes.html).
-
-If you have any questions about abstract classes please write to me: krzysztofzuraw(at)fastmail.com.

@@ -30,7 +30,7 @@ you can easily do this way:
 $ sudo apt-get install binutils libproj-dev gdal-bin
 ```
 
-Gdal-bin package is not necessary but it's very helpful so I encourage
+`Gdal-bin` package is not necessary but it's very helpful so I encourage
 to install it.
 
 Then you need to choose what database you will use with your GeoDjango
@@ -74,23 +74,23 @@ To actually show some data we need it first. In this project I'll use
 coordinates.
 
 There is a lot of sites with free shp files available but I will choose
-one for Poland. The shapefiles are in zip file. So go and grab them:
+one for Poland. The shape file are in zip file. So go and grab them:
 
 ```shell
 wget ftp://91.223.135.109/prg/jednostki_administracyjne.zip
 $ mkdir data && unzip jednostki_administracyjne.zip -d data
 ```
 
-I'm going to use only 1 shapefile from this zip called 'województwa.shp'
-(voivodeships). After unziping you want to examine contents of
-shapefiles. You can do it in tool like
-[QuantumGIS](http://www.qgis.org/pl/site/) or use GDAL ogrinfo.
+I'm going to use only 1 shape file from this zip called 'województwa.shp'
+(voivodeships). After unzipping you want to examine contents of
+shape files. You can do it in tool like
+[QuantumGIS](http://www.qgis.org/pl/site/).
 
-In QGIS this shapefile presents as follows:
+In QGIS this shape file presents as follows:
 
-![Shapefiles in QGIS](../../assets/2016-01-01-qgis-woj-shp.jpg)
+![Shape files in QGIS](../../assets/2016-01-01-qgis-woj-shp.jpg)
 
-Using ogrinfo:
+Using `ogrinfo`:
 
 ```shell
 $ ogrinfo -so data/PRG_jednostki_administracyjne_v10/województwa.shp województwa
@@ -156,8 +156,8 @@ it's django so you can type:
 $ ./manage.py ogrinspect data/PRG_jednostki_administracyjne_v10/województwa.shp Voivodeship --mapping --srid 2180 --multi >> voivodeships/models.py
 ```
 
-Where --mapping tells you to generate mapping used to load data from
-shapefile, --srid sets the [SRID](https://en.wikipedia.org/wiki/SRID)
+Where `--mapping` tells you to generate mapping used to load data from
+shape file, `--srid` sets the [SRID](https://en.wikipedia.org/wiki/SRID)
 for the geographic field and --multi sets geographic field to
 MultiPolygonField
 
@@ -335,7 +335,7 @@ class Voivodeship(models.Model):
 # rest of code here...
 ```
 
-Rerun ./manage.py makemigrations and ./manage.py migrate then try one
+Rerun `./manage.py makemigrations` and `./manage.py migrate` then try one
 more time to run load.py
 
 ```python
@@ -345,7 +345,7 @@ load.run()
 # 15 times more
 ```
 
-When you run ./manage.py runserver and go to the admin site you can see
+When you run `./manage.py runserver` and go to the admin site you can see
 that geometric field is displayed in form of a map:
 
 ![Dolnoslaskie Voivodeship](../../assets/2016-01-01-dolnoslaskie.jpg)
@@ -552,9 +552,9 @@ CSS lines to fix that in index.html:
 One of the Leaflet.js strong points is huge extensions
 [database](http://leafletjs.com/plugins.html). In this project I will
 use few of them including:
-[leaflet-ajax](https://github.com/calvinmetcalf/leaflet-ajax),
-[leaflet-spin](https://github.com/makinacorpus/Leaflet.Spin),
-[markercluster](https://github.com/Leaflet/Leaflet.markercluster). It's
+[`leaflet-ajax`](https://github.com/calvinmetcalf/leaflet-ajax),
+[`leaflet-spin`](https://github.com/makinacorpus/Leaflet.Spin),
+[`markercluster`](https://github.com/Leaflet/Leaflet.markercluster). It's
 up to you how you want to install it. I will use
 [bower](http://bower.io/) for that:
 
@@ -691,5 +691,3 @@ def points_view(request):
     points_as_geojson = serialize( 'geojson',Point.objects.all())
     return JsonResponse(json.loads(points_as_geojson))
 ```
-
-Thanks to Phyo Min Htwe for providing this piece of code!

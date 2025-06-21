@@ -28,7 +28,7 @@ of a gate to API. API word is combined with Django Application that uses
 PostgreSQL database and external film API. They are in green color.
 
 I will use a library called
-[graphene-django](https://github.com/graphql-python/graphene-django). It
+[`graphene-django`](https://github.com/graphql-python/graphene-django). It
 will help a lot and allow me to get the job done instead of writing
 boilerplate code.
 

@@ -114,7 +114,7 @@ cypress-run:
 A full example of config is [here](https://github.com/krzysztofzuraw/blog/blob/master/.github/workflows/main.yml#L13-L26).
 
 That's all. I don't have many e2e tests - I'm using them as a way to check if dependency updates made
-by [Dependabot](https://dependabot.com/) not only pass TypeScript compilator but if they do not
+by [Dependabot](https://dependabot.com/) not only pass TypeScript complicator but if they do not
 break rendering of my blog.
 
 ## Summary
@@ -122,7 +122,3 @@ break rendering of my blog.
 In this blog post, I presented a way to use [Cypress.io](https://www.cypress.io/) to test
 [Gatsby.js](https://github.com/gatsbyjs/gatsby) blog. You can find how it works in action inside
 my blog [repository](https://github.com/krzysztofzuraw/blog).
-
-### Update 2020-03-11
-
-- Thanks to [Gleb Bahmutov](https://twitter.com/bahmutov) suggestion I added new screenshots & cypress github action

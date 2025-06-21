@@ -7,7 +7,7 @@ slug: 2017/testing-django-template-tags
 **In this blog post I will give you simple example how to test your
 template tags in django using django testing tools. Let's get started!**
 
-## How to test templatetags?
+## How to test template tags?
 
 Let say that you got this template tag under
 `/templatetags/create_header.py` in django:
@@ -48,11 +48,9 @@ class CreateHeaderTemplateTagTest(SimpleTestCase):
 ```
 
 What is happening here? I setup `Context` instance with a proper
-variable that will be taken by templatetag. After that I create
-`Template`. I used the same syntax to include templatetags inside your
+variable that will be taken by template tag. After that I create
+`Template`. I used the same syntax to include template tags inside your
 html files - they are templates for Django.
 
-Below I render a template with context and check if my templatetag
+Below I render a template with context and check if my template tag
 renders correctly.
-
-And that's all! I have my templatetag tested. Feel free to comment!

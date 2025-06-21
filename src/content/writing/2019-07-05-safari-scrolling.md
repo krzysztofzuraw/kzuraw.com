@@ -56,4 +56,3 @@ We switch to [body-scroll-lock](https://github.com/willmcpo/body-scroll-lock#rea
 the problem.
 
 What are your experience with developing web apps that has to run of Safari? Do you have any errors?
-You can write to me at krzysztofzuraw(at)fastmail.com.

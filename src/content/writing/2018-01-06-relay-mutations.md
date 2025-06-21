@@ -167,7 +167,7 @@ mutation and the second one when mutation end with an error. This is a useful pl
 errors to the user or some confirmation.
 
 That's all! I have my mutation working. Thank you for reading that and if you like it please share
-it on interwebs.
+it.
 
 Repo with code can be found on
 [Github](https://github.com/krzysztofzuraw/personal-blog-projects/tree/master/blog_django_graphql_react_relay).

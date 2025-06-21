@@ -70,7 +70,7 @@ class TARArchive(BaseArchive):
 
 `ZIPArchive` and `TARArchive` classes have `generate` method
 to create archives in given format using `ZipFile` or `tarfile` modules
-from standardlib as follows:
+from standard lib as follows:
 
 ```python
 zip_archive = ZIPArchive(os.path.join(os.getcwd(), 'zip'), ['for_zip'])
@@ -120,7 +120,7 @@ class BaseArchive(object):
       return extension == cls.EXTENSION:
 ```
 
-This `check_extenstion` that is classmethod helps me in figuring out
+This `check_extenstion` that is `classmethod` helps me in figuring out
 which underlying archive class should I use. Thanks to that in
 `ArchiveManager.create_archive` I only need to provide
 `self.archive_engine.generate()`. This method doesn't know if there is
@@ -135,10 +135,6 @@ feel free to comment.
 ## Edits (12.08.2016):
 
 - Refactor of `check_extenstion` method
-
-## Edits (30.07.2017):
-
-- Add missing EXTENSION parameter (by Jayesh Pawar)
 
 ## Edits (07.06.2018):
 

@@ -60,7 +60,7 @@ Django has a set of powerful commands available. To enable such a
 feature in flask you need
 [Flask-Script](flask-script.readthedocs.io/en/latest/). It allows you to
 create commands such as `runserver` or `shell`. In listing below I
-created a runserver command:
+created a `runserver` command:
 
 ```python
 from flask.ext.script import Manager, Shell, Server
@@ -78,7 +78,7 @@ manager.add_command(
 To communicate between microservices I use REST. To ease yourself when
 creating resources and endpoints you can use
 [Flask-RESTful](flask-restful.readthedocs.io/en/0.3.5/). It is
-superuseful when you need to create REST API. It is simple - you specify
+useful when you need to create REST API. It is simple - you specify
 endpoint with resource and rest is done by Flask-RESTful. It also has
 request parsing and it is very simple to create other representations like
 xml. The snippet below shows it:
@@ -125,7 +125,7 @@ class CustomSchema(ma.Schema):
 
 Most of the modern frameworks have support for ORM- the same is with
 Flask. There is an extension called
-[Flask-SQLAchemy](http://flask-sqlalchemy.pocoo.org/2.1/) that adds
+[`Flask-SQLAchemy`](http://flask-sqlalchemy.pocoo.org/2.1/) that adds
 support for [SQLAlchemy](http://www.sqlalchemy.org/). Take this snippet
 for instance:
 
@@ -215,7 +215,7 @@ After testing is done we deploy microservice using few tools:
 ## Puppet
 
 We use puppet for managing and provisioning our microservices.
-Especially we use an R10k module for puppet: [gtihub
+Especially we use an R10k module for puppet: [GitHub
 link](https://github.com/puppetlabs/r10k).
 
 ## Cookiecutter
@@ -263,8 +263,8 @@ follows:
 ## Dh-virtualenv
 
 To distribute packages we use
-[dh-virtualenv](dh-virtualenv.readthedocs.io/en/latest/). This
-is taking python virtual enviroments and packing it to deb packages. So
+[dh-virtualenv](https://dh-virtualenv.readthedocs.io/en/latest/). This
+is taking python virtual environments and packing it to deb packages. So
 to have new code released we run jenkins job to create new deb.
 
 That's all for today! The slides from this presentation can be found

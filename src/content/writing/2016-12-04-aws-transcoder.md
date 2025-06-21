@@ -114,7 +114,7 @@ export AWS_ACCESS_KEY_ID='key'
 export AWS_SECRET_ACCESS_KEY='acces_id'
 ```
 
-The last line with `AWS_S3_HOST` is really important here as boto -
+The last line with `AWS_S3_HOST` is really important here as `boto` -
 client that django-storages use underneath to connect to AWS doesn't
 have default region set up. If this is not specified I upload files with
 redirection which don't allow to transfer static files or upload any
@@ -206,7 +206,7 @@ the code.
 ## Code
 
 AWS has very good python API called
-[boto3](http://boto3.readthedocs.io/en/latest/). Using that API and few
+[`boto3`](http://boto3.readthedocs.io/en/latest/). Using that API and few
 examples from the internet I was able to create a simple class to create
 transcode job:
 
@@ -280,7 +280,7 @@ transcoder = AudioTranscoder()
 ```
 
 Going from the top - I specified my `region_name` as well as
-`pipeline_name` for boto3 to know to which region it should connect. In
+`pipeline_name` for `boto3` to know to which region it should connect. In
 method `get_pipeline` I iterate through all available pipelines and
 return that has the same name as `pipeline_name`. In this function
 `paginator` is an object which holds on portion of data so user don't
@@ -716,10 +716,10 @@ $(".alert").on("closed.bs.alert", function (event) {
 });
 ```
 
-Going from the top - django by default uses csrftoken so I have to get
+Going from the top - django by default uses csrf token so I have to get
 it that my request passes the authentication. I'm using here library
 called [js-cookie](https://github.com/js-cookie/js-cookie). In
-`ajaxSetup` I tell jQuery to always send csrftokens while using ajax
+`ajaxSetup` I tell jQuery to always send csrf tokens while using ajax
 request. Below I add the event listener to an element that has `.alert`
 class. This event - `closed.bs.alert` is provided by bootstrap. On
 triggering this event I send ajax POST to url from data attribute in

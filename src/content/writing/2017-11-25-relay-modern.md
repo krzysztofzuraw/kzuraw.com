@@ -22,7 +22,7 @@ generate-schema:
 	mv film_api/schema.json film_ui/schema.json
 ```
 
-I'm using here command (`graphql_schema`) provided by django graphene. Indent option in for a
+I'm using here command (`graphql_schema`) provided by `Django graphene`. Indent option in for a
 sake of better readability of generated schema which looks like:
 
 ```json
@@ -148,7 +148,7 @@ export default environment;
 ```
 
 Going from the top - I create a store for my Relay data, then I create a `network` where I submit
-the address of `graphql` instance - In my case where Django Graphene listens to. The rest of the code in
+the address of `graphql` instance - In my case where `Django Graphene` listens to. The rest of the code in
 `network` function is JSON handling. At the end of the file I export `environment` so I can use
 it in my `App.jsx`:
 

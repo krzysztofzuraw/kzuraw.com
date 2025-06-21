@@ -11,7 +11,7 @@ Recently I wanted to add a new selector to already existing module - it turns ou
 
 ## Inspiration
 
-I’m a reader and fan of [Kent C Dodds](https://kentcdodds.com/) & [Cory House](https://twitter.com/housecor)
+I’m a reader and fan of [Kent C. Dodds](https://kentcdodds.com/) & [Cory House](https://twitter.com/housecor)
 work - they are preaching different approaches to writing your applications. Instead of having a central place
 where you keep your store, selectors, etc you start by keeping them near a place
 there are needed. If there is a need to reuse a selector or a piece of the state you can

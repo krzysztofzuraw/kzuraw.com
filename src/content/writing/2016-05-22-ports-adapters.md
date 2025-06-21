@@ -18,9 +18,9 @@ retrieving search results from reddit. But what when it comes to testing
 such code? You mock requests calls or use responses library.
 
 How do you do it in ports and adapters way? You will have one thing
-called port for all external connections. Throught this all requests to
+called port for all external connections. Thought this all requests to
 external APIs will be done because who knows if the reddit will not
-change to duckduckgo? In such case you add DuckDuckGo Adapter and
+change to DuckDuckGo? In such case you add DuckDuckGo Adapter and
 you are all set. Because port don't care if there is Reddit adapter or
 DuckDuckGo adapter as long as it provides necessary methods. As I
 mentioned before, port is communicating only with adapters. And what is
@@ -274,7 +274,7 @@ class RedditSearchForm(forms.Form):
 I defined simple form that has only one field: `query` which is
 `CharField` field with label. My form has one method `perform_search`.
 In this method, I import instantiated reddit port that takes instance of
-reddit adapter with settings from django settings module. Idealy this
+reddit adapter with settings from django settings module. Ideally this
 adapter should be singleton class. This is how it looks in
 `reddit_adapter`:
 
@@ -404,7 +404,7 @@ RedditAddToFavouritesFormset = forms.modelformset_factory(
 ```
 
 I used something called `forms.modelformset_factory` which is a function
-to produce fromset from model. So I provided model name with fields to
+to produce formset from model. So I provided model name with fields to
 calling this function. What is more, I add additional argument `extra`
 for creating more than one form in formset. How to use newly created
 `RedditAddToFavouritesFormset`? In views:
@@ -456,7 +456,7 @@ incorrect I rerender template with form errors. Thanks to that my
 {% else %}
 ```
 
-To insert values that are from search I have to instantiate formset with
+To insert values that are from search I have to instantiate `formset` with
 argument initial in `search/views.py` under `get_context_data` method:
 
 ```python

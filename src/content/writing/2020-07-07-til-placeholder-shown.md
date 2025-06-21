@@ -9,4 +9,4 @@ What is doing? It is selecting those inputs - if you are gonna use it as `input:
 which currently has a placeholder. It works on all browsers except IE11. When it can be useful?
 
 For styling input with float label + placeholder. See the example below (works on chrome/safari) -
-see line 55 inside this [codepen](https://codepen.io/team/css-tricks/pen/XVBLRM)
+see line 55 inside this [`codepen`](https://codepen.io/team/css-tricks/pen/XVBLRM)

@@ -12,4 +12,17 @@ export default {
       addWords: true,
     },
   ],
+  overrides: [
+    {
+      filename: "**/*.md",
+      ignoreRegExpList: [
+        // Ignore code blocks
+        "/^```[\\s\\S]*?^```/gm",
+        // Ignore inline code
+        "/`[^`]*`/g",
+        // Ignore slug values in frontmatter
+        "/^slug:\\s*[^\\n]+$/gm",
+      ],
+    },
+  ],
 };

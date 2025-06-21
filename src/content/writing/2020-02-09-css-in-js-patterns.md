@@ -129,8 +129,6 @@ is done with `p` tag in example above.
 
 ## Conclusion
 
-You can check all of those examples in more complicated scenarios in [code-sandbox](https://codesandbox.io/embed/css-in-js-patterns-zz7ns):
-
 In this blog post I wanted to present 3 CSS-in-JS patterns:
 
 - styled prop. This is the easiest one to use but has a problem with having a lot of boilerplate to

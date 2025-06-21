@@ -37,8 +37,3 @@ return plugins.reduce(
   },
 );
 ```
-
-## Changelog
-
-1. Update the last snippet after feedback from [Miguel Leite
-   ](https://dev.to/miguelacleite/comment/21g7l)

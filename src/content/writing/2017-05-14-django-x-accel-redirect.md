@@ -121,7 +121,7 @@ a repo. Setting `client_max_body_size` allows me to upload files till
 why I needed `location /media/`.
 
 The rest of requests goes to django application - and in production
-settings - gunicorn.
+settings - `gunicorn`.
 
 The last piece of a puzzle is `docker-compose.yml`:
 

@@ -7,11 +7,9 @@ slug: 2019/using-xstate-with-inputs-in-react
 In this blog post, I want to present how you can use [XState](https://xstate.js.org/) to make
 styling inputs in React which are easier to maintain.
 
-You can find the code on [codesandbox](https://codesandbox.io/s/xstate-input-2df4o).
-
 Before you start reading this tutorial I recommend to read about state machines on
 [statecharts.github.io](https://statecharts.github.io/).
-Also, Geddski [blog post](https://gedd.ski/post/state-machines-in-react/) is a good place to start.
+Also [blog post](https://gedd.ski/post/state-machines-in-react/) is a good place to start.
 
 ## Problem
 
@@ -38,7 +36,7 @@ ability to prevent impossible states from happening?
 Let me introduce you to [Xstate](https://xstate.js.org/). As you may notice we are going to use
 statecharts to represent input logic. Let's draw one:
 
-![Statechars](../../assets/2019-10-27-statecharts.jpg)
+![Statecharts](../../assets/2019-10-27-statecharts.jpg)
 
 We gonna have two parallel state machines:
 
@@ -266,8 +264,6 @@ The rest of logic is to handle different HTML events on input and transition` th
 ## Summary & TL;DR
 
 In this blog post, I showed how to implement logic around changing input borders and labels with [Xstate](https://xstate.js.org/).
-
-You can find code (with TypeScript types) on this [codesandbox](https://codesandbox.io/s/xstate-input-2df4o).
 
 What is your take on state machines?
 Do you like this short introduction to xstate with React?

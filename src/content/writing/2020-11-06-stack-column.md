@@ -16,11 +16,11 @@ It has a logo, text in two rows and horizontal space between them. It sounds not
 I added a logo, then left margin and in the end two rows of text. Or I can use css grid to have the same effect.
 
 Yet after two weeks requirements change and I don't need to display the telephone number to the user if there is no enough data. In this case, I won't render this component. Yet I have a problem - `margin-top` between `contact our support` & `at 555-555-555`.
-I can either refactor that to grid/flexbox with a `gap` instead of `margin-top` (the best way) or I can add conditional inside my [css prop](https://emotion.sh/docs/css-prop) telling emotion to reset `margin-top` to 0 (the worst way). In the worst case, my code started to look like spaghetti, in the best case in mix flexbox or grid definitions with margins, colours & fonts making my code less readable.
+I can either refactor that to `grid/flexbox` with a `gap` instead of `margin-top` (the best way) or I can add conditional inside my [css prop](https://emotion.sh/docs/css-prop) telling emotion to reset `margin-top` to 0 (the worst way). In the worst case, my code started to look like spaghetti, in the best case in mix `flexbox` or grid definitions with margins, colors & fonts making my code less readable.
 
 ## Solution
 
-What is solution for this problem? Use specialised components. Specialised component has one task - to give spacing and make sure that elements lay in the place where they should be. Below you will find example of those specialised components in action:
+What is solution for this problem? Use specialized components. Specialized component has one task - to give spacing and make sure that elements lay in the place where they should be. Below you will find example of those specialized components in action:
 
 ```tsx
 <Columns space="0.5rem" alignY="flex-start">
@@ -87,7 +87,7 @@ export const Columns: React.FunctionComponent<Props> = ({
 };
 ```
 
-HTML examples can be found on [codepen](https://codepen.io/krzysztofzuraw/pen/GRqrwEG).
+HTML examples can be found on [`codepen`](https://codepen.io/krzysztofzuraw/pen/GRqrwEG).
 
 ## Summary
 

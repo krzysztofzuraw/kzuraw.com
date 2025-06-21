@@ -17,4 +17,4 @@ But you do the same with image 250px by 1px (250px width by 1px height) - image 
 So if you want your image to take only 1px with `height:auto` make sure that such image has full width
 of parent.
 
-You can see example in this [codepen](https://codepen.io/krzysztofzuraw/pen/oNzXEGY).
+You can see example in this [`codepen`](https://codepen.io/krzysztofzuraw/pen/oNzXEGY).

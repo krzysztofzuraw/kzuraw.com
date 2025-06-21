@@ -14,15 +14,15 @@ Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer). In
 this book there is a chapter 21: Design by Contract that stays:
 
 > It is a simple yet powerful technique that focuses on documenting (and
-> agreeing to) the rights and responibilites of software mdoules to
+> agreeing to) the rights and responsibilities of software modules to
 > ensure program correctness.
 
 How to achieve this? There are 3 basic expectations of any given
 function/class:
 
-1.  **Preconditions**: What are function requirements in order to be
+1.  **Pre conditions**: What are function requirements in order to be
     called
-2.  **Postconditions**: What is class guaranteed to do
+2.  **Post conditions**: What is class guaranteed to do
 3.  **Class invariants**: Conditions that are true after execution of
     function/class
 
@@ -31,9 +31,6 @@ libraries that are made to provide help while using contracts. I'll
 start from the first one:
 [py.contracts](https://pypi.python.org/pypi/PyContracts).
 
-To demonstrate how to use this library I'll reuse my old code from
-[ports and apdaters
-series](http://krzysztofzuraw.com/blog/2016/ports-and-adapters-in-python-part-three.html).
 There is a reddit port:
 
 ```python
@@ -69,7 +66,7 @@ checking: list(str)   for value: Instance of <class 'int'>: 1
 
 Right now I knew because of contract that this `search` method will take
 query parameter which has to be string with length more than 0
-(precondition) and returns list of strings (postcondition).
+(precondition) and returns list of strings (`postcondition`).
 
 The same can be accomplished with metaclasses:
 
@@ -113,7 +110,7 @@ Unfortunately, py.contracts doesn't provide way to use invariants but
 you always can use `assert`.
 
 This library is called
-[zope.interface](https://docs.zope.org/zope.interface/). From its GitHub
+[`zope.interface`](https://docs.zope.org/zope.interface/). From its GitHub
 page:
 
 > Interfaces are a mechanism for labeling objects as conforming to a
@@ -252,7 +249,7 @@ Unfortunately, I couldn't find the way to declare contract for return
 `zope.intefrace`. If you found one please let me know
 
 I wanted to write about another library
-[dpcontrancts](https://pypi.python.org/pypi/dpcontracts/0.1.0), but
+[`dpcontrancts`](https://pypi.python.org/pypi/dpcontracts/0.1.0), but
 unfortunately, I wasn't able to download it from PyPi.
 
 When I was reading and reviewing material for previous posts I found out
@@ -289,7 +286,7 @@ class ExternalAPIPort(ExternalAPIPortMetaclass):
 
 What is happening here? I defined `ExternalAPIPortMetaclass` as a
 metaclass that inherits from `abc.ABCMeta` (This code snippet is valid
-for python 3). Then I decided to make abstractmethod called `search` so
+for python 3). Then I decided to make abstract method called `search` so
 all instances of that metaclass will have to provide such function.
 Inside this code, I check whether provided query is a string or not. In
 `ExternalAPIPort` which inherits from previously defined I have to call
