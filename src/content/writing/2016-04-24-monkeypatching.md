@@ -169,7 +169,5 @@ All examples can be found under this [repo](https://github.com/krzysztofzuraw/pe
 
 ## References:
 
-1.  [What is
-    mocking](http://stackoverflow.com/questions/2665812/what-is-mocking).
-2.  [Mocking Python With Kung Fu
-    Panda](http://manishamde.github.io/blog/2013/10/06/mocking-python-with-kung-fu-panda/#mock_classes).
+1.  [What is mocking](http://stackoverflow.com/questions/2665812/what-is-mocking).
+2.  [Mocking Python With Kung Fu Panda](http://manishamde.github.io/blog/2013/10/06/mocking-python-with-kung-fu-panda/#mock_classes).

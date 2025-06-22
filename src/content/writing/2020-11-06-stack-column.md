@@ -85,7 +85,7 @@ export const Columns: React.FunctionComponent<Props> = ({
 };
 ```
 
-HTML examples can be found on [`codepen`](https://codepen.io/krzysztofzuraw/pen/GRqrwEG).
+HTML examples can be found on [Codepen](https://codepen.io/krzysztofzuraw/pen/GRqrwEG).
 
 ## Summary
 

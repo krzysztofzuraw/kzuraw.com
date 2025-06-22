@@ -218,8 +218,6 @@ And that's it! You got the working project made in few minutes. If you found thi
 
 ## Resources:
 
-1.  [Development and deployment of cookiecutter django via
-    docker](https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-via-docker/)
-2.  [Cookiecutter django
-    github](https://github.com/pydanny/cookiecutter-django)
+1.  [Development and deployment of cookiecutter django via docker](https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-via-docker/)
+2.  [Cookiecutter django github](https://github.com/pydanny/cookiecutter-django)
 3.  [Cookiecutter docs](http://cookiecutter.readthedocs.org/en/latest/)

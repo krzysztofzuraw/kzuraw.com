@@ -98,7 +98,7 @@ getUser(userId); // ✅ Works
 getUser("user_id_42"); // ❌ Type error
 ```
 
-If you’re already using [Zod](https://zod.dev/), its [**`.**brand()`](https://zod.dev/api#branded-types) method gives you branded types with built-in validation. This is especially handy for APIs or form inputs.
+If you’re already using [Zod](https://zod.dev/), its [`brand`](https://zod.dev/api#branded-types) method gives you branded types with built-in validation. This is especially handy for APIs or form inputs.
 
 **Pros:**
 
