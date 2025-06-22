@@ -7,7 +7,7 @@ export const GET: APIRoute = async (context) => {
 
   return rss({
     title: "kzuraw.com",
-    description: "Website about TypeScript, React and all things frontend",
+    description: "Website about TypeScript, React and all things fullstack.",
     site: context.site?.toString() ?? "https://kzuraw.com",
     trailingSlash: false,
     items: latestWriting.map((post) => ({
